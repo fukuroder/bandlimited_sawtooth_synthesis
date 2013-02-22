@@ -1,19 +1,18 @@
 #include "BLITSaw_vst3.h"
-
+#include "BLITSaw_vst3_guids.h"
 #include "pluginterfaces/base/ibstream.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 #include "pluginterfaces/vst/ivstevents.h"
 #include <algorithm>
 
-
 namespace Steinberg { namespace Vst {
+
 //-------------------------------------------------------------------------
 // BLITSaw_vst3 Implementation
 //-------------------------------------------------------------------------
 BLITSaw_vst3::BLITSaw_vst3()
 {
-	/*コントローラーを登録する*/
-	setControllerClass(FUID(CONTROLLER_UID1,CONTROLLER_UID2,CONTROLLER_UID3,CONTROLLER_UID4));
+	setControllerClass(AGainControllerUID);
 }
 
 //-------------------------------------------------------------------------

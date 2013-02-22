@@ -132,6 +132,9 @@
     <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BLITSaw_vst3_guids.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstattributes.h">

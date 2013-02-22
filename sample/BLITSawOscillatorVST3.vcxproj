@@ -233,6 +233,7 @@
     <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp" />
     <ClCompile Include="BLITSaw_vst3.cpp" />
+    <ClCompile Include="BLITSaw_vst3_guids.h" />
     <ClCompile Include="resonance_filter.cpp" />
   </ItemGroup>
   <ItemGroup>

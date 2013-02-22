@@ -1,5 +1,6 @@
 #include "BLITSaw_vst3.h"
 #include "BLITSaw_vst3_controller.h"
+#include "BLITSaw_vst3_guids.h"
 #include "public.sdk/source/main//pluginfactoryvst3.h"
 
 //------------------------------------------------------------------------
@@ -33,7 +34,7 @@ BEGIN_FACTORY_DEF(
 
 /*プロセッサーの登録*/
 DEF_CLASS2(
-	INLINE_UID(PROCESSOR_UID1,PROCESSOR_UID2,PROCESSOR_UID3,PROCESSOR_UID4),/*（決め打ち）*/
+	INLINE_UID_FROM_FUID(AGainControllerUID),/*（決め打ち）*/
 	PClassInfo::kManyInstances,	/*（決め打ち）*/
 	kVstAudioEffectClass,		/*プロセッサーですよ*/
 	"BLITSawOscillatorVST3",					/*プラグイン名*/
@@ -46,7 +47,7 @@ DEF_CLASS2(
 
 /*コントローラーの登録*/
 DEF_CLASS2(
-	INLINE_UID(CONTROLLER_UID1,CONTROLLER_UID2,CONTROLLER_UID3,CONTROLLER_UID4),/*（決め打ち）*/
+	INLINE_UID_FROM_FUID(AGainControllerUID),/*（決め打ち）*/
 	PClassInfo::kManyInstances,		/*（決め打ち）*/
 	kVstComponentControllerClass,	/*コントローラーですよ*/
 	"BLITSawOscillatorVST3 Controller",			/*プラグイン名*/
