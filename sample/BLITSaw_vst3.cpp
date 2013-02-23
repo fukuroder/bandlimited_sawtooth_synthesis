@@ -1,4 +1,4 @@
-#include "BLITSaw_vst3.h"
+ï»¿#include "BLITSaw_vst3.h"
 #include "BLITSaw_vst3_guids.h"
 #include "pluginterfaces/base/ibstream.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
@@ -24,14 +24,14 @@ FUnknown* BLITSaw_vst3::createInstance(void* context)
 //-------------------------------------------------------------------------
 tresult PLUGIN_API BLITSaw_vst3::initialize(FUnknown* context)
 {
-	/*eƒNƒ‰ƒX‰Šú‰»ˆ—*/
+	/*è¦ªã‚¯ãƒ©ã‚¹åˆæœŸåŒ–å‡¦ç†*/
 	tresult result = AudioEffect::initialize(context);
 	if(result != kResultOk)
 	{
 		return result;
 	}
 
-	/*ƒoƒX‚Ìİ’è*/
+	/*ãƒã‚¹ã®è¨­å®š*/
 	addAudioOutput(STR16("Stereo Out"), SpeakerArr::kStereo);
 	addEventInput (STR16 ("Event Input"), 1);
 
@@ -54,7 +54,7 @@ tresult PLUGIN_API BLITSaw_vst3::setBusArrangements(
 
 tresult PLUGIN_API BLITSaw_vst3::setProcessing (TBool state)
 {
-	// state ‹N“®1 I—¹0
+	// state èµ·å‹•1 çµ‚äº†0
 	if( state == 1 )
 	{
 		_notes.resize( 8, bandlimited_sawtooth_oscillator_note_vst3(processSetup.sampleRate));
@@ -78,7 +78,7 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 			{
 				int32 offsetSamples;
 				double value;
-				// ––”ö‚Ì’l‚ğæ“¾
+				// æœ«å°¾ã®å€¤ã‚’å–å¾—
 				if(paramQueue->getPoint(paramQueue->getPointCount() - 1, offsetSamples, value) == kResultTrue)
 				{
 					ParamID id = paramQueue->getParameterId();
@@ -165,12 +165,12 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 
 				if( target_note != _notes.end() )
 				{
-					// ƒm[ƒgOFF
+					// ãƒãƒ¼ãƒˆOFF
 					target_note->trigger(e.noteOn);
 				}
 				else
 				{
-					// —˜—p‰Â”\‚Èƒm[ƒg‚ğŒŸõ‚·‚é
+					// åˆ©ç”¨å¯èƒ½ãªãƒãƒ¼ãƒˆã‚’æ¤œç´¢ã™ã‚‹
 					auto available_note = std::find_if(
 						_notes.begin(),
 						_notes.end(), 
@@ -178,7 +178,7 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 
 					if( available_note != _notes.end() )
 					{
-						// ƒm[ƒgON
+						// ãƒãƒ¼ãƒˆON
 						available_note->trigger( e.noteOn );
 					}
 				}
@@ -198,7 +198,7 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 
 				if( target_note != _notes.end() )
 				{
-					// ƒm[ƒgOFF
+					// ãƒãƒ¼ãƒˆOFF
 					target_note->release();
 				}
 			}
@@ -227,7 +227,7 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 
 	for(auto note = _notes.begin(); note != _notes.end(); ++note)
 	{
-		// ƒsƒbƒ`‚ğXV
+		// ãƒ”ãƒƒãƒã‚’æ›´æ–°
 		note->updateFrequency();
 	}
 
@@ -235,7 +235,7 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 	_filter.updateFilter();
 
 	/*--------*/
-	/*‰¹ºˆ—*/
+	/*éŸ³å£°å‡¦ç†*/
 	/*--------*/
 	if (data.numInputs == 0 && data.numOutputs == 1 )
 	{
@@ -252,22 +252,22 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 				{	
 					if( note->adsr == bandlimited_sawtooth_oscillator_note::Silent )continue;
 
-					// ƒm[ƒg–ˆ‚Ì‰¹‚ğ‘«‚µ‡‚í‚¹‚é
+					// ãƒãƒ¼ãƒˆæ¯ã®éŸ³ã‚’è¶³ã—åˆã‚ã›ã‚‹
 					value += note->saw * note->envelope * note->velocity();
 		
-					// ƒIƒVƒŒ[ƒ^[XV
+					// ã‚ªã‚·ãƒ¬ãƒ¼ã‚¿ãƒ¼æ›´æ–°
 					blit.updateOcsillater( *note );
 
-					// ƒGƒ“ƒxƒ[ƒvXV
+					// ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—æ›´æ–°
 					blit.updateEnvelope( *note );
 				}
 
 				//
-				// ƒtƒBƒ‹ƒ^‚ğŠ|‚¯‚½‚¯‚ê‚ÎŠ|‚¯‚é
+				// ãƒ•ã‚£ãƒ«ã‚¿ã‚’æ›ã‘ãŸã‘ã‚Œã°æ›ã‘ã‚‹
 				//
 				double filterd_value = _filter.process(value);
 
-				// o—Íƒoƒbƒtƒ@‚Éİ’è‚·‚é
+				// å‡ºåŠ›ãƒãƒƒãƒ•ã‚¡ã«è¨­å®šã™ã‚‹
 				double pan = 0.0;
 				out[0][ii] = static_cast<float>( filterd_value * (1.0 - pan) * 0.5 );
 				out[1][ii] = static_cast<float>( filterd_value * (1.0 + pan) * 0.5 );

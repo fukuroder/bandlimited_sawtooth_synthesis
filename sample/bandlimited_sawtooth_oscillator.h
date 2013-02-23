@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 // include
 #include <array>
@@ -9,7 +9,7 @@ class bandlimited_sawtooth_oscillator_note;
 class bandlimited_sawtooth_oscillator
 {
 public:
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	bandlimited_sawtooth_oscillator();
 
 	///

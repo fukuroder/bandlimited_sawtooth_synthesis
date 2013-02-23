@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "public.sdk/source/vst/vsteditcontroller.h"
 
 namespace Steinberg {namespace Vst {
@@ -8,14 +8,14 @@ namespace Steinberg {namespace Vst {
 //-------------------------------------------------------------------------
 class BLITSaw_vst3_controller : public EditController
 {
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	BLITSaw_vst3_controller();
 
 public:
-	// ƒCƒ“ƒXƒ^ƒ“ƒX¶¬
+	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
 	static FUnknown* create(void* context);
 
-	// ‰Šú‰»iƒI[ƒo[ƒ‰ƒCƒhj
+	// åˆæœŸåŒ–ï¼ˆã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ï¼‰
 	virtual tresult PLUGIN_API initialize(FUnknown* context);
 
 	virtual IPlugView* PLUGIN_API createView(const char* name);

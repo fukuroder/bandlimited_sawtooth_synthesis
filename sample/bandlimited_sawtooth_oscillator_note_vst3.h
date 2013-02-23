@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 // include
 #include "bandlimited_sawtooth_oscillator_note.h"
@@ -6,23 +6,23 @@
 
 namespace Steinberg {namespace Vst {
 
-/// FLStudio—pBLITƒmƒRƒMƒŠ”gƒm[ƒgƒNƒ‰ƒX.
+/// FLStudioç”¨BLITãƒã‚³ã‚®ãƒªæ³¢ãƒãƒ¼ãƒˆã‚¯ãƒ©ã‚¹.
 class bandlimited_sawtooth_oscillator_note_vst3 : public bandlimited_sawtooth_oscillator_note
 {
 public:
 
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	bandlimited_sawtooth_oscillator_note_vst3(int sampleRate);
 
 	virtual ~bandlimited_sawtooth_oscillator_note_vst3();
 
-	/// ƒm[ƒgƒIƒ“.
+	/// ãƒãƒ¼ãƒˆã‚ªãƒ³.
 	void trigger(const NoteOnEvent& noteOn);
 
-	/// ƒ^ƒOæ“¾.
+	/// ã‚¿ã‚°å–å¾—.
 	int32 id()const;
 
-	/// ü”g”XV
+	/// å‘¨æ³¢æ•°æ›´æ–°
 	void updateFrequency();
 
 	void setFinePitch(double finePitch);
@@ -31,10 +31,10 @@ public:
 
 	void setPitchBend(double pitchBend);
 
-	/// ƒm[ƒg”jŠü.
+	/// ãƒãƒ¼ãƒˆç ´æ£„.
 	virtual void kill();
 
-	/// ƒxƒƒVƒeƒBæ“¾.
+	/// ãƒ™ãƒ­ã‚·ãƒ†ã‚£å–å¾—.
 	virtual double velocity();
 
 protected:
@@ -43,7 +43,7 @@ protected:
 
 	int _sampleRate;
 
-	/// ü”g”.
+	/// å‘¨æ³¢æ•°.
 	double _old_pitch_bend;
 	double _pitch_bend;
 
@@ -53,7 +53,7 @@ protected:
 	double _old_param_osci_fine;
 	double _param_osci_fine;
 
-	/// ’†‰›‚Ìƒm[ƒgƒiƒ“ƒo[
+	/// ä¸­å¤®ã®ãƒãƒ¼ãƒˆãƒŠãƒ³ãƒãƒ¼
 	static const int _note_no_center = 69;
 };
 

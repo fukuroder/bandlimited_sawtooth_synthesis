@@ -1,4 +1,4 @@
-#include "BLITSaw_vst3_controller.h"
+Ôªø#include "BLITSaw_vst3_controller.h"
 #include "pluginterfaces/base/ibstream.h"
 #include "pluginterfaces/base/ustring.h"
 #include "pluginterfaces/vst/ivstmidicontrollers.h"
@@ -48,7 +48,7 @@ tresult PLUGIN_API BLITSaw_vst3_controller::initialize(FUnknown* context)
 
 IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
 {
-	// TODO: Ç∆ÇËÇ†Ç¶Ç∏Ç±Ç±Ç≈
+	// TODO: „Å®„Çä„ÅÇ„Åà„Åö„Åì„Åì„Åß
 	for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
 	{
 		performEdit(ii, getParamNormalized(ii) );

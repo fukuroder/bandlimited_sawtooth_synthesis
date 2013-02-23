@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 
-/// BLITƒmƒRƒMƒŠ”gƒm[ƒgŠî’êƒNƒ‰ƒX.
+/// BLITãƒã‚³ã‚®ãƒªæ³¢ãƒãƒ¼ãƒˆåŸºåº•ã‚¯ãƒ©ã‚¹.
 class bandlimited_sawtooth_oscillator_note
 {
 public:
@@ -8,51 +8,51 @@ public:
 	/// ADSR.
 	enum ADSR
 	{
-		Silent,	///< –³‰¹
-		Attack,	///< ƒAƒ^ƒbƒN
-		Const,	///< ˆê’è
-		Release ///< ƒŠƒŠ[ƒX
+		Silent,	///< ç„¡éŸ³
+		Attack,	///< ã‚¢ã‚¿ãƒƒã‚¯
+		Const,	///< ä¸€å®š
+		Release ///< ãƒªãƒªãƒ¼ã‚¹
 	};
 
-	/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^.
+	/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿.
 	bandlimited_sawtooth_oscillator_note();
 
 	//void updateEnvelope();
 
-	/// ƒm[ƒgƒIƒ“.
+	/// ãƒãƒ¼ãƒˆã‚ªãƒ³.
 	void trigger(double pitch, int srate);
 
-	/// ü”g”XV.
+	/// å‘¨æ³¢æ•°æ›´æ–°.
 	void updateFrequency(double pitch, int srate);
 
 	void setFinePitch(double finePitch);
 
 	void setCorasePitch(double CorasePitch);
 
-	/// ƒm[ƒgƒŠƒŠ[ƒX.
+	/// ãƒãƒ¼ãƒˆãƒªãƒªãƒ¼ã‚¹.
 	void release();
 
-	/// ƒm[ƒg”jŠü.
+	/// ãƒãƒ¼ãƒˆç ´æ£„.
 	virtual void kill() = 0;
 
-	/// ƒxƒƒVƒeƒBæ“¾.
+	/// ãƒ™ãƒ­ã‚·ãƒ†ã‚£å–å¾—.
 	virtual double velocity() = 0;
 
 	/// ADSR.
 	ADSR	adsr;
 
-	/// ƒGƒ“ƒxƒ[ƒv.
+	/// ã‚¨ãƒ³ãƒ™ãƒ­ãƒ¼ãƒ—.
 	double	envelope;
 
-	/// Œ»İ‚ÌŠÔ.
+	/// ç¾åœ¨ã®æ™‚é–“.
 	double	t;
 
-	/// Œ»İ‚Ì’l.
+	/// ç¾åœ¨ã®å€¤.
 	double	saw;
 	
-	/// ”{‰¹”.
+	/// å€éŸ³æ•°.
 	int		n;
 
-	/// ‚İ•.
+	/// åˆ»ã¿å¹….
 	double	dt;
 };

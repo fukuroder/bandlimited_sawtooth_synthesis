@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "pluginterfaces/base/funknown.h"
 
 namespace Steinberg { namespace Vst {

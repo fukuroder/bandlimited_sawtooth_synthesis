@@ -1,9 +1,9 @@
-#include "bandlimited_sawtooth_oscillator_note_vst3.h"
+Ôªø#include "bandlimited_sawtooth_oscillator_note_vst3.h"
 #include <math.h>
 
 namespace Steinberg {namespace Vst {
 //----------------
-// ÉRÉìÉXÉgÉâÉNÉ^
+// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 //----------------
 bandlimited_sawtooth_oscillator_note_vst3::bandlimited_sawtooth_oscillator_note_vst3(int sampleRate)
 :_sampleRate(sampleRate),_old_pitch_bend(0.0),_pitch_bend(0.0)
@@ -20,7 +20,7 @@ bandlimited_sawtooth_oscillator_note_vst3::~bandlimited_sawtooth_oscillator_note
 //---------
 void bandlimited_sawtooth_oscillator_note_vst3::trigger(const NoteOnEvent& noteOn)
 {
-	_noteOn = noteOn; // ÉRÉsÅ[
+	_noteOn = noteOn; // „Ç≥„Éî„Éº
 
 	double pitch = 440.0*( ::pow(2.0, ( _noteOn.pitch + _param_osci_coarse - _note_no_center)/12.0 + _param_osci_fine/1200.0 + _pitch_bend));
 	bandlimited_sawtooth_oscillator_note::trigger(pitch, _sampleRate);
@@ -30,7 +30,7 @@ void bandlimited_sawtooth_oscillator_note_vst3::trigger(const NoteOnEvent& noteO
 	_old_param_osci_fine = _param_osci_fine;
 }
 
-	/// É^ÉOéÊìæ.
+	/// „Çø„Ç∞ÂèñÂæó.
 int32 bandlimited_sawtooth_oscillator_note_vst3::id()const
 {
 	//return _noteOn.noteId;

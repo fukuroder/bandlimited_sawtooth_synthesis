@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+Ôªø#define _USE_MATH_DEFINES
 #include "math.h"
 #include "resonance_filter.h"
 
@@ -45,7 +45,7 @@ void resonance_filter::setLow(double value)
 }
 
 //----------------
-// TODO: ê‡ñæ
+// TODO: Ë™¨Êòé
 //----------------
 void resonance_filter::updateFilter()
 {
@@ -78,7 +78,7 @@ void resonance_filter::updateFilter()
 
 	if( _param_filter_resonance < 1.0e-12 )
 	{
-		// É[ÉçäÑâÒî
+		// „Çº„É≠Ââ≤ÂõûÈÅø
 		return;
 	}
 

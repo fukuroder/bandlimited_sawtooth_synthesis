@@ -1,14 +1,14 @@
-#define _USE_MATH_DEFINES
+ï»¿#define _USE_MATH_DEFINES
 #include <math.h>
 #include "bandlimited_sawtooth_oscillator.h"
 #include "bandlimited_sawtooth_oscillator_note.h"
 
 //----------------
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //----------------
 bandlimited_sawtooth_oscillator::bandlimited_sawtooth_oscillator()
 {
-	// ƒTƒCƒ“”gƒe[ƒuƒ‹ì¬
+	// ã‚µã‚¤ãƒ³æ³¢ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	int ii = 0;
 	for(; ii< _sinTable.size()-1; ii++)
 	{
@@ -33,20 +33,20 @@ double bandlimited_sawtooth_oscillator::LinearInterpolatedSin( double x )
 	if( 1.0 <= x ) throw;
 #endif
 
-	// ƒXƒP[ƒŠƒ“ƒO
+	// ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°
 	double pos = (_sinTable.size()-1) * x;
 
 #ifdef _DEBUG
 	if( pos >= _sinTable.size()-1 ) throw;
 #endif
 
-	// pos‚ğ‹²‚Ş‚æ‚¤‚È®”A,B‚ğZo
+	// posã‚’æŒŸã‚€ã‚ˆã†ãªæ•´æ•°A,Bã‚’ç®—å‡º
 	unsigned int idx_A = static_cast<int>(pos);
 
-	// A‚©‚ç‚Ì‹——£‚ğZo
+	// Aã‹ã‚‰ã®è·é›¢ã‚’ç®—å‡º
 	double s = pos - idx_A;
 
-	// üŒ`•âŠÔ
+	// ç·šå½¢è£œé–“
 	return (1.0-s) * _sinTable[idx_A] + s*_sinTable[idx_A+1];
 }
 
@@ -57,14 +57,14 @@ double bandlimited_sawtooth_oscillator::BLIT( double t, int N )
 {
 	if( t < 1.0e-12 )
 	{
-		// ƒ[ƒŠ„–h~Bƒƒsƒ^ƒ‹‚Ì’è—‚ğ“K—p
+		// ã‚¼ãƒ­å‰²é˜²æ­¢ã€‚ãƒ­ãƒ”ã‚¿ãƒ«ã®å®šç†ã‚’é©ç”¨
 		return (2.0 * N) * 2.0;
 	}
 
-	// •ªq
+	// åˆ†å­
 	double x_numerator = LinearInterpolatedSin(::fmod((2.0*N+1.0)/2.0*t, 1.0));
 
-	// •ª•ê
+	// åˆ†æ¯
 	double x_denominator = LinearInterpolatedSin( t/2.0 );
 
 	return (x_numerator/x_denominator-1.0) * 2.0;
@@ -92,7 +92,7 @@ void bandlimited_sawtooth_oscillator::updateEnvelope(bandlimited_sawtooth_oscill
 		}
 		else
 		{
-			// Attack¨’è”
+			// Attackâ†’å®šæ•°
 			note.envelope = 1.0;
 			note.adsr = bandlimited_sawtooth_oscillator_note::Const;
 		}
@@ -106,11 +106,11 @@ void bandlimited_sawtooth_oscillator::updateEnvelope(bandlimited_sawtooth_oscill
 		}
 		else
 		{
-			// ƒŠƒŠ[ƒXI—¹
+			// ãƒªãƒªãƒ¼ã‚¹çµ‚äº†
 			note.envelope = 0.0;
 			note.adsr = bandlimited_sawtooth_oscillator_note::Silent;
 
-			// ”jŠü
+			// ç ´æ£„
 			note.kill();
 		}
 	}

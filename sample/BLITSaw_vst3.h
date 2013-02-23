@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "public.sdk/source/vst/vstaudioeffect.h"
 
 #include "bandlimited_sawtooth_oscillator_note_vst3.h"
@@ -14,17 +14,17 @@ namespace Steinberg { namespace Vst {
 //-------------------------------------------------------------------------
 class BLITSaw_vst3 : public AudioEffect
 {
-	/*ƒRƒ“ƒXƒgƒ‰ƒNƒ^*/ 
+	/*ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/ 
 	BLITSaw_vst3();
 
 public:
-	/*ƒCƒ“ƒXƒ^ƒ“ƒX¶¬*/
+	/*ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ*/
 	static FUnknown* createInstance(void* context);
 
-	/*‰Šú‰»iƒI[ƒo[ƒ‰ƒCƒhj*/
+	/*åˆæœŸåŒ–ï¼ˆã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ï¼‰*/
 	virtual tresult PLUGIN_API initialize(FUnknown* context);
 
-	/*ƒoƒXİ’èiƒI[ƒo[ƒ‰ƒCƒhj*/
+	/*ãƒã‚¹è¨­å®šï¼ˆã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ï¼‰*/
 	virtual tresult PLUGIN_API setBusArrangements(
 		SpeakerArrangement* inputs,
 		int32 numIns,
@@ -32,14 +32,14 @@ public:
 		int32 numOuts
 	);
 
-	/*‰¹ºˆ—iƒI[ƒo[ƒ‰ƒCƒhj*/
+	/*éŸ³å£°å‡¦ç†ï¼ˆã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ï¼‰*/
 	virtual tresult PLUGIN_API process(ProcessData& data);
 
 	virtual tresult PLUGIN_API setProcessing (TBool state);
 
 protected:
 
-	/// ƒpƒ‰ƒ[ƒ^ID.
+	/// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ID.
 	enum
 	{
 		feedback,

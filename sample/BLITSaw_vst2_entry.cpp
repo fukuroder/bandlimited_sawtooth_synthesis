@@ -1,4 +1,4 @@
-#include "public.sdk/source/vst/vst2wrapper/vst2wrapper.h"
+﻿#include "public.sdk/source/vst/vst2wrapper/vst2wrapper.h"
 #include "BLITSaw_vst3_guids.h"
 
 //------------------------------------------------------------------------

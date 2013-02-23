@@ -1,60 +1,60 @@
-#include "BLITSaw_vst3.h"
+ï»¿#include "BLITSaw_vst3.h"
 #include "BLITSaw_vst3_controller.h"
 #include "BLITSaw_vst3_guids.h"
 #include "public.sdk/source/main//pluginfactoryvst3.h"
 
 //------------------------------------------------------------------------
-// DLLƒ[ƒhŒã‚ÉŒÄ‚Î‚ê‚é
+// DLLãƒ­ãƒ¼ãƒ‰å¾Œã«å‘¼ã°ã‚Œã‚‹
 //------------------------------------------------------------------------
 bool InitModule()
 {
-	/*‰½‚à‚µ‚È‚¢*/
+	/*ä½•ã‚‚ã—ãªã„*/
 	return true;
 }
 
 //------------------------------------------------------------------------
-// DLLƒAƒ“ƒ[ƒhŒã‚ÉŒÄ‚Î‚ê‚é
+// DLLã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰å¾Œã«å‘¼ã°ã‚Œã‚‹
 //------------------------------------------------------------------------
 bool DeinitModule()
 {
-	/*‰½‚à‚µ‚È‚¢*/
+	/*ä½•ã‚‚ã—ãªã„*/
 	return true;
 }
 
 using namespace Steinberg::Vst;
 
 //------------------------------------------------------------------------
-// ƒtƒ@ƒNƒgƒŠ’è‹`
+// ãƒ•ã‚¡ã‚¯ãƒˆãƒªå®šç¾©
 //------------------------------------------------------------------------
 BEGIN_FACTORY_DEF(
-	"fukuroda",							// ì¬Ò
-	"https://github.com/fukuroder",		// ƒzƒ€ƒy
-	"mailto:fukuroder@live.jp"			// ƒƒAƒh
+	"fukuroda",							// ä½œæˆè€…
+	"https://github.com/fukuroder",		// ãƒ›ãƒ ãƒš
+	"mailto:fukuroder@live.jp"			// ãƒ¡ã‚¢ãƒ‰
 )
 
-/*ƒvƒƒZƒbƒT[‚Ì“o˜^*/
+/*ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¼ã®ç™»éŒ²*/
 DEF_CLASS2(
-	INLINE_UID_FROM_FUID(AGainProcessorUID),/*iŒˆ‚ß‘Å‚¿j*/
-	PClassInfo::kManyInstances,	/*iŒˆ‚ß‘Å‚¿j*/
-	kVstAudioEffectClass,		/*ƒvƒƒZƒbƒT[‚Å‚·‚æ*/
-	"BLITSawOscillatorVST3",					/*ƒvƒ‰ƒOƒCƒ“–¼*/
-	kDistributable,		/*ƒvƒƒZƒbƒT[‚ÆƒRƒ“ƒgƒ[ƒ‰[‚ª•ª‚©‚ê‚Ä‚Ü‚·‚æ*/
-	PlugType::kInstrumentSynth,	/*ƒTƒuƒJƒeƒSƒŠ[*/
-	"1.0.0.000",				/*ƒvƒ‰ƒOƒCƒ“ƒo[ƒWƒ‡ƒ“*/
-	kVstVersionString,			/*iŒˆ‚ß‘Å‚¿j*/
-	BLITSaw_vst3::createInstance		/*BLITSaw_vst3ƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒƒ\ƒbƒh*/
+	INLINE_UID_FROM_FUID(AGainProcessorUID),/*ï¼ˆæ±ºã‚æ‰“ã¡ï¼‰*/
+	PClassInfo::kManyInstances,	/*ï¼ˆæ±ºã‚æ‰“ã¡ï¼‰*/
+	kVstAudioEffectClass,		/*ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¼ã§ã™ã‚ˆ*/
+	"BLITSawOscillatorVST3",					/*ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å*/
+	kDistributable,		/*ãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¼ã¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ãŒåˆ†ã‹ã‚Œã¦ã¾ã™ã‚ˆ*/
+	PlugType::kInstrumentSynth,	/*ã‚µãƒ–ã‚«ãƒ†ã‚´ãƒªãƒ¼*/
+	"1.0.0.000",				/*ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãƒãƒ¼ã‚¸ãƒ§ãƒ³*/
+	kVstVersionString,			/*ï¼ˆæ±ºã‚æ‰“ã¡ï¼‰*/
+	BLITSaw_vst3::createInstance		/*BLITSaw_vst3ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ¡ã‚½ãƒƒãƒ‰*/
 )
 
-/*ƒRƒ“ƒgƒ[ƒ‰[‚Ì“o˜^*/
+/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®ç™»éŒ²*/
 DEF_CLASS2(
-	INLINE_UID_FROM_FUID(AGainControllerUID),/*iŒˆ‚ß‘Å‚¿j*/
-	PClassInfo::kManyInstances,		/*iŒˆ‚ß‘Å‚¿j*/
-	kVstComponentControllerClass,	/*ƒRƒ“ƒgƒ[ƒ‰[‚Å‚·‚æ*/
-	"BLITSawOscillatorVST3 Controller",			/*ƒvƒ‰ƒOƒCƒ“–¼*/
-	0,								/*i–¢g—pj*/
-	"",								/*i–¢g—pj*/
-	"1.0.0.000",					/*ƒvƒ‰ƒOƒCƒ“ƒo[ƒWƒ‡ƒ“*/
-	kVstVersionString,				/*iŒˆ‚ß‘Å‚¿j*/
-	BLITSaw_vst3_controller::create	/*BLITSaw_vst3_controllerƒCƒ“ƒXƒ^ƒ“ƒX¶¬ƒƒ\ƒbƒh*/
+	INLINE_UID_FROM_FUID(AGainControllerUID),/*ï¼ˆæ±ºã‚æ‰“ã¡ï¼‰*/
+	PClassInfo::kManyInstances,		/*ï¼ˆæ±ºã‚æ‰“ã¡ï¼‰*/
+	kVstComponentControllerClass,	/*ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã§ã™ã‚ˆ*/
+	"BLITSawOscillatorVST3 Controller",			/*ãƒ—ãƒ©ã‚°ã‚¤ãƒ³å*/
+	0,								/*ï¼ˆæœªä½¿ç”¨ï¼‰*/
+	"",								/*ï¼ˆæœªä½¿ç”¨ï¼‰*/
+	"1.0.0.000",					/*ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãƒãƒ¼ã‚¸ãƒ§ãƒ³*/
+	kVstVersionString,				/*ï¼ˆæ±ºã‚æ‰“ã¡ï¼‰*/
+	BLITSaw_vst3_controller::create	/*BLITSaw_vst3_controllerã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆãƒ¡ã‚½ãƒƒãƒ‰*/
 )
 END_FACTORY
