@@ -48,6 +48,12 @@ tresult PLUGIN_API BLITSaw_vst3_controller::initialize(FUnknown* context)
 
 IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
 {
+	// TODO: ‚Æ‚è‚ ‚¦‚¸‚±‚±‚Å
+	for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
+	{
+		performEdit(ii, getParamNormalized(ii) );
+	}
+
 	if (name != nullptr && strcmp(name, ViewType::kEditor) == 0)
 	{
 		VST3Editor *editor= new VSTGUI::VST3Editor(this, "view", "BLITSaw_vst3.uidesc");
@@ -65,10 +71,10 @@ tresult PLUGIN_API BLITSaw_vst3_controller::setComponentHandler(IComponentHandle
 		return result; 
 	}
 
-	for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
-	{
-		performEdit(ii, getParamNormalized(ii) );
-	}
+	//for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
+	//{
+	//	performEdit(ii, getParamNormalized(ii) );
+	//}
 
 	return kResultOk;
 }
