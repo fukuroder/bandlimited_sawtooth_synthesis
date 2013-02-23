@@ -33,7 +33,8 @@ void bandlimited_sawtooth_oscillator_note_vst3::trigger(const NoteOnEvent& noteO
 	/// ƒ^ƒOŽæ“¾.
 int32 bandlimited_sawtooth_oscillator_note_vst3::id()const
 {
-	return _noteOn.noteId;
+	//return _noteOn.noteId;
+	return _noteOn.pitch;
 }
 
 

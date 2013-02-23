@@ -157,25 +157,45 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 
 			if( e.type == Event::kNoteOnEvent )
 			{
-				// 利用可能なノートを検索する
-				auto available_note = std::find_if(
+				int16 note_no = e.noteOff.pitch;
+				auto target_note = std::find_if(
 					_notes.begin(),
 					_notes.end(), 
-					[](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.adsr == bandlimited_sawtooth_oscillator_note::Silent;}); 
+					[note_no](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.id() == note_no;});
 
-				if( available_note != _notes.end() )
+				if( target_note != _notes.end() )
 				{
-					// ノートON
-					available_note->trigger( e.noteOn );
+					// ノートOFF
+					target_note->trigger(e.noteOn);
+				}
+				else
+				{
+					// 利用可能なノートを検索する
+					auto available_note = std::find_if(
+						_notes.begin(),
+						_notes.end(), 
+						[](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.adsr == bandlimited_sawtooth_oscillator_note::Silent;}); 
+
+					if( available_note != _notes.end() )
+					{
+						// ノートON
+						available_note->trigger( e.noteOn );
+					}
 				}
 			}
 			else if( e.type == Event::kNoteOffEvent )
 			{
-				int32 note_id = e.noteOff.noteId;
+				//int32 note_id = e.noteOff.noteId;
+				//auto target_note = std::find_if(
+				//	_notes.begin(),
+				//	_notes.end(), 
+				//	[note_id](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.id() == note_id;});
+				int16 note_no = e.noteOff.pitch;
 				auto target_note = std::find_if(
 					_notes.begin(),
 					_notes.end(), 
-					[note_id](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.id() == note_id;}); 
+					[note_no](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.id() == note_no;});
+
 				if( target_note != _notes.end() )
 				{
 					// ノートOFF
