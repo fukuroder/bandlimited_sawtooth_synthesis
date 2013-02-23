@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{a9e31b49-70ce-4ec7-a1fe-2860d15a660a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{54573580-c895-4433-bdbc-3adfa01a1753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vstgui">
+      <UniqueIdentifier>{83ce7152-e4f0-4483-b461-b8779b0311a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vst3">
+      <UniqueIdentifier>{530f112b-b796-4683-ab88-ef3a9fd98b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vst3\pluginterfaces">
+      <UniqueIdentifier>{2d8ee0d4-f645-48af-bdb9-25b81cb3156e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vst3\pluginterfaces\base">
+      <UniqueIdentifier>{e1994f73-7f9a-454c-aab6-dd31df42f6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vst3\public.sdk">
+      <UniqueIdentifier>{299e36f3-44d1-4f63-8e70-5d4686a4d0c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vst3\public.sdk\common">
+      <UniqueIdentifier>{9828df43-7f78-45fa-ab16-4af12b38b3aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vst3\public.sdk\vst">
+      <UniqueIdentifier>{5c0248b2-4273-4461-8b62-9a41ffbda876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vst3\public.sdk\main">
+      <UniqueIdentifier>{bec23584-0519-4baa-9ab6-0ac26a6c6eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3">
+      <UniqueIdentifier>{30bd2abd-ba81-424a-85ba-05a70af2969e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\vstgui">
+      <UniqueIdentifier>{7af74cc1-75ac-4f6b-b8b5-ade13ea27801}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3\pluginterfaces">
+      <UniqueIdentifier>{3f79feda-5f4c-449a-be14-bcfbdaea5549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3\public.sdk">
+      <UniqueIdentifier>{6c471fad-7e37-416a-9072-8169a78a6d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3\pluginterfaces\base">
+      <UniqueIdentifier>{73aebe8b-d00f-41e3-8612-2a6a73f07582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3\pluginterfaces\vst">
+      <UniqueIdentifier>{1119f00d-523c-48e4-8a6e-6fb3d14d8956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3\public.sdk\common">
+      <UniqueIdentifier>{595eeae4-7cdc-4dc0-8639-56761998bf2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3\public.sdk\main">
+      <UniqueIdentifier>{c9e58297-a17d-4843-ba6c-0a1778d6f3f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\vst3\public.sdk\vst">
+      <UniqueIdentifier>{d398dcbb-8201-4bd6-89d1-06818011f15a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\common\pluginview.cpp">
+      <Filter>Source Files\vst3\public.sdk\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstaudioeffect.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstbus.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstcomponent.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstcomponentbase.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vsteditcontroller.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstguieditor.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstinitiids.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstparameters.cpp">
+      <Filter>Source Files\vst3\public.sdk\vst</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\main\dllmain.cpp">
+      <Filter>Source Files\vst3\public.sdk\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\public.sdk\source\main\pluginfactoryvst3.cpp">
+      <Filter>Source Files\vst3\public.sdk\main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\pluginterfaces\base\ustring.cpp">
+      <Filter>Source Files\vst3\pluginterfaces\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.cpp">
+      <Filter>Source Files\vstgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_uidescription_win32.cpp">
+      <Filter>Source Files\vstgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_win32.cpp">
+      <Filter>Source Files\vstgui</Filter>
+    </ClCompile>
+    <ClCompile Include="bandlimited_sawtooth_oscillator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resonance_filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BLITSaw_vst3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BLITSaw_vst3_controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BLITSaw_vst3_entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BLITSaw_vst2_entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.h">
+      <Filter>Header Files\vstgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\base\falignpop.h">
+      <Filter>Header Files\vst3\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\base\falignpush.h">
+      <Filter>Header Files\vst3\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\base\fplatform.h">
+      <Filter>Header Files\vst3\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\base\ftypes.h">
+      <Filter>Header Files\vst3\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\base\ipluginbase.h">
+      <Filter>Header Files\vst3\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\base\keycodes.h">
+      <Filter>Header Files\vst3\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\base\ustring.h">
+      <Filter>Header Files\vst3\pluginterfaces\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstattributes.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstaudioprocessor.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstcomponent.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivsteditcontroller.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstevents.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivsthostapplication.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstmessage.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstmidicontrollers.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstparameterchanges.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstprocesscontext.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\ivstunits.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\vstpresetkeys.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\pluginterfaces\vst\vsttypes.h">
+      <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\common\pluginview.h">
+      <Filter>Header Files\vst3\public.sdk\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\main\pluginfactoryvst3.h">
+      <Filter>Header Files\vst3\public.sdk\main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstaudioeffect.h">
+      <Filter>Header Files\vst3\public.sdk\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstbus.h">
+      <Filter>Header Files\vst3\public.sdk\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstcomponent.h">
+      <Filter>Header Files\vst3\public.sdk\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstcomponentbase.h">
+      <Filter>Header Files\vst3\public.sdk\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vsteditcontroller.h">
+      <Filter>Header Files\vst3\public.sdk\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstguieditor.h">
+      <Filter>Header Files\vst3\public.sdk\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstparameters.h">
+      <Filter>Header Files\vst3\public.sdk\vst</Filter>
+    </ClInclude>
+    <ClInclude Include="bandlimited_sawtooth_oscillator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resonance_filter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bandlimited_sawtooth_oscillator_note.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bandlimited_sawtooth_oscillator_note_vst3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BLITSaw_vst3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BLITSaw_vst3_controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BLITSaw_vst3_guids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BLITSaw_vst3.uidesc" />
+    <None Include="BLITSaw_vst2.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BLITSaw_vst3.rc" />
+  </ItemGroup>
+</Project>

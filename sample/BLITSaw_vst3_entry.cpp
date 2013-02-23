@@ -21,7 +21,7 @@ bool DeinitModule()
 	return true;
 }
 
-namespace Steinberg { namespace Vst {
+using namespace Steinberg::Vst;
 
 //------------------------------------------------------------------------
 // ファクトリ定義
@@ -38,7 +38,7 @@ DEF_CLASS2(
 	PClassInfo::kManyInstances,	/*（決め打ち）*/
 	kVstAudioEffectClass,		/*プロセッサーですよ*/
 	"BLITSawOscillatorVST3",					/*プラグイン名*/
-	Vst::kDistributable,		/*プロセッサーとコントローラーが分かれてますよ*/
+	kDistributable,		/*プロセッサーとコントローラーが分かれてますよ*/
 	PlugType::kInstrumentSynth,	/*サブカテゴリー*/
 	"1.0.0.000",				/*プラグインバージョン*/
 	kVstVersionString,			/*（決め打ち）*/
@@ -58,5 +58,3 @@ DEF_CLASS2(
 	BLITSaw_vst3_controller::create	/*BLITSaw_vst3_controllerインスタンス生成メソッド*/
 )
 END_FACTORY
-
-}}
