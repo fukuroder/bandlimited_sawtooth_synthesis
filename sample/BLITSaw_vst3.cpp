@@ -32,8 +32,8 @@ tresult PLUGIN_API BLITSaw_vst3::initialize(FUnknown* context)
 	}
 
 	/*ÉoÉXÇÃê›íË*/
-	addAudioInput(STR16("Stereo In"), SpeakerArr::kStereo);
 	addAudioOutput(STR16("Stereo Out"), SpeakerArr::kStereo);
+	addEventInput (STR16 ("Event Input"), 1);
 
 	return kResultOk;
 }
@@ -45,12 +45,9 @@ tresult PLUGIN_API BLITSaw_vst3::setBusArrangements(
 	SpeakerArrangement* outputs,
 	int32 numOuts
 ){
-	if( numIns == 1 && numOuts == 1 )
+	if (numIns == 0 && numOuts == 1 && outputs[0] == SpeakerArr::kStereo)
 	{
-		if( inputs[0] == SpeakerArr::kStereo && outputs[0] == SpeakerArr::kStereo )
-		{
-			return AudioEffect::setBusArrangements(inputs, numIns, outputs, numOuts);
-		}
+		return AudioEffect::setBusArrangements (inputs, numIns, outputs, numOuts);
 	}
 	return kResultFalse;
 }
@@ -220,9 +217,9 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 	/*--------*/
 	/*âπê∫èàóù*/
 	/*--------*/
-	if (data.numInputs == 1 && data.numOutputs == 1 )
+	if (data.numInputs == 0 && data.numOutputs == 1 )
 	{
-		if( data.inputs[0].numChannels == 2 )
+		if( data.outputs[0].numChannels == 2 )
 		{
 			//float** in  = data.inputs[0].channelBuffers32;
 			float** out = data.outputs[0].channelBuffers32;
