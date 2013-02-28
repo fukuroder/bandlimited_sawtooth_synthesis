@@ -1,16 +1,9 @@
 ﻿#include "BLITSaw_vst3_controller.h"
-#include "pluginterfaces/base/ibstream.h"
-#include "pluginterfaces/base/ustring.h"
-#include "pluginterfaces/vst/ivstmidicontrollers.h"
-#include "base/source/fstring.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
-
 #include <math.h>
 
 namespace Steinberg {namespace Vst {
 
-//-------------------------------------------------------------------------
-// BLITSaw_vst3_controller Implementation
 //-------------------------------------------------------------------------
 BLITSaw_vst3_controller::BLITSaw_vst3_controller()
 {
@@ -46,6 +39,7 @@ tresult PLUGIN_API BLITSaw_vst3_controller::initialize(FUnknown* context)
 	return kResultOk;
 }
 
+//-------------------------------------------------------------------------
 IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
 {
 	// TODO: とりあえずここで
@@ -63,6 +57,7 @@ IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
 	return nullptr;
 }
 
+//-------------------------------------------------------------------------
 tresult PLUGIN_API BLITSaw_vst3_controller::setComponentHandler(IComponentHandler* handler)
 {
 	tresult result = EditController::setComponentHandler(handler);
