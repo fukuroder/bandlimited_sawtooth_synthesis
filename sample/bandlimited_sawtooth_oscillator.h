@@ -25,31 +25,11 @@ public:
 		///
 	double _attack_decrement;
 
-	void setAttackTime(double attackTime, int sampleRate)
-	{
-		if( attackTime > 1.0e-12)
-		{
-			_attack_decrement = 1.0 / (attackTime * sampleRate);
-		}
-		else
-		{
-			_attack_decrement = 1.0;
-		}
-	}
+	void setAttackTime(double attackTime, int sampleRate);
 
 	double _release_decrement;
 
-	void setReleaseTime(double releaseTime, int sampleRate)
-	{
-		if( releaseTime > 1.0e-12)
-		{
-			_release_decrement = 1.0 / (releaseTime * sampleRate);
-		}
-		else
-		{
-			_release_decrement = 1.0;
-		}
-	}
+	void setReleaseTime(double releaseTime, int sampleRate);
 
 protected:
 
