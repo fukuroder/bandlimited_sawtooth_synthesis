@@ -76,7 +76,7 @@ tresult PLUGIN_API BLITSaw_vst3_controller::setComponentHandler(IComponentHandle
 
 //-------------------------------------------------------------------------
 BLITSaw_FeedBackParameter::BLITSaw_FeedBackParameter()
-	:Parameter(L"Feedback", 0, L"%%", 0.5)
+	:Parameter(L"Feedback", 0, L"%", 0.5)
 {
 }
 
