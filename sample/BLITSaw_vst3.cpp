@@ -225,13 +225,16 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 		}
 	}
 
-	for(auto note = _notes.begin(); note != _notes.end(); ++note)
+	bool bAllSilent= std::all_of(
+		_notes.begin(),
+		_notes.end(),
+		[](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.adsr == bandlimited_sawtooth_oscillator_note::Silent;});
+
+	if( bAllSilent )
 	{
-		// ピッチを更新
-		note->updateFrequency();
+		return kResultOk;
 	}
 
-	
 	_filter.updateFilter();
 
 	/*--------*/
@@ -239,6 +242,12 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 	/*--------*/
 	if (data.numInputs == 0 && data.numOutputs == 1 )
 	{
+		for(auto note = _notes.begin(); note != _notes.end(); ++note)
+		{
+			// ピッチを更新
+			note->updateFrequency();
+		}
+
 		if( data.outputs[0].numChannels == 2 )
 		{
 			//float** in  = data.inputs[0].channelBuffers32;
