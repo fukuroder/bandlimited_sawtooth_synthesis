@@ -40,10 +40,10 @@ double bandlimited_sawtooth_oscillator::LinearInterpolatedSin( double x )
 	if( pos >= _sinTable.size()-1 ) throw;
 #endif
 
-	// posを挟むような整数A,Bを算出
+	// 位置を計算
 	unsigned int idx_A = static_cast<int>(pos);
 
-	// Aからの距離を算出
+	// 距離を算出
 	double s = pos - idx_A;
 
 	// 線形補間
@@ -55,7 +55,7 @@ double bandlimited_sawtooth_oscillator::LinearInterpolatedSin( double x )
 //-------------
 double bandlimited_sawtooth_oscillator::BLIT( double t, int N )
 {
-	if( t < 1.0e-12 )
+	if( t < 1.0e-12 )// TODO: 要チューニング
 	{
 		// ゼロ割防止。ロピタルの定理を適用
 		return (2.0 * N) * 2.0;
