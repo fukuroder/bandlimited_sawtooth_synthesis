@@ -10,7 +10,7 @@ namespace Steinberg { namespace Vst {
 //-------------------------------------------------------------------------
 // BLITSaw_vst3 Implementation
 //-------------------------------------------------------------------------
-BLITSaw_vst3::BLITSaw_vst3()
+BLITSaw_vst3::BLITSaw_vst3():_notes(8)
 {
 	setControllerClass(AGainControllerUID);
 }
@@ -57,7 +57,11 @@ tresult PLUGIN_API BLITSaw_vst3::setProcessing (TBool state)
 	// state 起動1 終了0
 	if( state == 1 )
 	{
-		_notes.resize( 8, bandlimited_sawtooth_oscillator_note_vst3(processSetup.sampleRate));
+		for(auto note = _notes.begin(); note != _notes.end(); ++note)
+		{
+			note->setSampleRate( processSetup.sampleRate );
+		}
+
 		_filter.setSampleRate( processSetup.sampleRate );
 	}
 

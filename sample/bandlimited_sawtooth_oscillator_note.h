@@ -20,10 +20,12 @@ public:
 	//void updateEnvelope();
 
 	/// ノートオン.
-	void trigger(double pitch, int srate);
+	void trigger(double pitch);
+
+	void setSampleRate(int srate);
 
 	/// 周波数更新.
-	void updateFrequency(double pitch, int srate);
+	void updateFrequency(double pitch);
 
 	void setFinePitch(double finePitch);
 
@@ -55,4 +57,6 @@ public:
 
 	/// 刻み幅.
 	double	dt;
+
+	int srate;
 };

@@ -12,7 +12,7 @@ class bandlimited_sawtooth_oscillator_note_vst3 : public bandlimited_sawtooth_os
 public:
 
 	/// コンストラクタ.
-	bandlimited_sawtooth_oscillator_note_vst3(int sampleRate);
+	bandlimited_sawtooth_oscillator_note_vst3();
 
 	virtual ~bandlimited_sawtooth_oscillator_note_vst3();
 
@@ -40,8 +40,6 @@ public:
 protected:
 
 	NoteOnEvent _noteOn;
-
-	int _sampleRate;
 
 	/// 周波数.
 	double _old_pitch_bend;

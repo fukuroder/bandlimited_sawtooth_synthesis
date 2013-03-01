@@ -5,8 +5,8 @@ namespace Steinberg {namespace Vst {
 //----------------
 // コンストラクタ
 //----------------
-bandlimited_sawtooth_oscillator_note_vst3::bandlimited_sawtooth_oscillator_note_vst3(int sampleRate)
-:_sampleRate(sampleRate),_old_pitch_bend(0.0),_pitch_bend(0.0)
+bandlimited_sawtooth_oscillator_note_vst3::bandlimited_sawtooth_oscillator_note_vst3()
+:_old_pitch_bend(0.0),_pitch_bend(0.0)
 {
 }
 
@@ -23,7 +23,7 @@ void bandlimited_sawtooth_oscillator_note_vst3::trigger(const NoteOnEvent& noteO
 	_noteOn = noteOn; // コピー
 
 	double pitch = 440.0*( ::pow(2.0, ( _noteOn.pitch + _param_osci_coarse - _note_no_center)/12.0 + _param_osci_fine/1200.0 + _pitch_bend));
-	bandlimited_sawtooth_oscillator_note::trigger(pitch, _sampleRate);
+	bandlimited_sawtooth_oscillator_note::trigger(pitch);
 
 	_old_pitch_bend = _pitch_bend;
 	_old_param_osci_coarse = _param_osci_coarse;
@@ -53,7 +53,7 @@ void bandlimited_sawtooth_oscillator_note_vst3::updateFrequency()
 		_old_param_osci_fine != _param_osci_fine)
 	{
 		double pitch = 440.0*( ::pow(2.0, ( _noteOn.pitch + _param_osci_coarse - _note_no_center)/12.0 + _param_osci_fine/1200.0 + _pitch_bend));
-		bandlimited_sawtooth_oscillator_note::updateFrequency(pitch, _sampleRate);
+		bandlimited_sawtooth_oscillator_note::updateFrequency(pitch);
 
 		_old_pitch_bend = _pitch_bend;
 		_old_param_osci_coarse = _param_osci_coarse;
