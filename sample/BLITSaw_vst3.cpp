@@ -10,7 +10,7 @@ namespace Steinberg { namespace Vst {
 //-------------------------------------------------------------------------
 // BLITSaw_vst3 Implementation
 //-------------------------------------------------------------------------
-BLITSaw_vst3::BLITSaw_vst3():_notes(8)
+BLITSaw_vst3::BLITSaw_vst3()
 {
 	setControllerClass(AGainControllerUID);
 }

@@ -5,7 +5,7 @@
 #include "bandlimited_sawtooth_oscillator.h"
 #include "resonance_filter.h"
 
-#include <vector>
+#include <array>
 
 namespace Steinberg { namespace Vst {
 
@@ -54,7 +54,7 @@ protected:
 		low,
 	};
 
-	std::vector<bandlimited_sawtooth_oscillator_note_vst3> _notes;
+	std::array<bandlimited_sawtooth_oscillator_note_vst3, 8> _notes;
 
 	bandlimited_sawtooth_oscillator blit;
 
