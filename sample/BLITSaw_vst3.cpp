@@ -169,7 +169,7 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 
 				if( target_note != _notes.end() )
 				{
-					// ノートOFF
+					// 再度ノートON
 					target_note->trigger(e.noteOn);
 				}
 				else
@@ -254,7 +254,6 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 
 		if( data.outputs[0].numChannels == 2 )
 		{
-			//float** in  = data.inputs[0].channelBuffers32;
 			float** out = data.outputs[0].channelBuffers32;
 
 			const int32 sampleFrames = data.numSamples;
