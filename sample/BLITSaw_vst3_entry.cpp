@@ -34,7 +34,7 @@ BEGIN_FACTORY_DEF(
 
 /*プロセッサーの登録*/
 DEF_CLASS2(
-	INLINE_UID_FROM_FUID(AGainProcessorUID),/*（決め打ち）*/
+	INLINE_UID_FROM_FUID(BLITSawProcessorID),/*（決め打ち）*/
 	PClassInfo::kManyInstances,	/*（決め打ち）*/
 	kVstAudioEffectClass,		/*プロセッサーですよ*/
 	"BLITSawOscillatorVST3",					/*プラグイン名*/
@@ -47,7 +47,7 @@ DEF_CLASS2(
 
 /*コントローラーの登録*/
 DEF_CLASS2(
-	INLINE_UID_FROM_FUID(AGainControllerUID),/*（決め打ち）*/
+	INLINE_UID_FROM_FUID(BLITSawControllerID),/*（決め打ち）*/
 	PClassInfo::kManyInstances,		/*（決め打ち）*/
 	kVstComponentControllerClass,	/*コントローラーですよ*/
 	"BLITSawOscillatorVST3 Controller",			/*プラグイン名*/

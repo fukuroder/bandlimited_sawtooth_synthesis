@@ -4,5 +4,5 @@
 //------------------------------------------------------------------------
 ::AudioEffect* createEffectInstance (audioMasterCallback audioMaster)
 {
-	return Steinberg::Vst::Vst2Wrapper::create (GetPluginFactory(), Steinberg::Vst::AGainProcessorUID, 'bLiT', audioMaster);
+	return Steinberg::Vst::Vst2Wrapper::create (GetPluginFactory(), Steinberg::Vst::BLITSawProcessorID, 'bLiT', audioMaster);
 }
