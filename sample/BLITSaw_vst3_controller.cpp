@@ -43,6 +43,11 @@ tresult PLUGIN_API BLITSaw_vst3_controller::initialize(FUnknown* context)
 //-------------------------------------------------------------------------
 IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
 {
+	for( int ii = 0; ii < getParameterCount(); ii++ )
+	{
+		performEdit(ii, getParamNormalized(ii));
+	}
+
 	VST3Editor* editor = nullptr;
 	if (name != nullptr && strcmp(name, ViewType::kEditor) == 0)
 	{
@@ -62,12 +67,13 @@ tresult PLUGIN_API BLITSaw_vst3_controller::setState (IBStream* state)
 	// set parameter
 	if( state )
 	{
-		for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
+		for( int ii = 0; ii < getParameterCount(); ii++ )
 		{
 			ParamValue value;
 			if( state->read(&value, sizeof(ParamValue)) == kResultTrue )
 			{
-				parameters.getParameter(ii)->setNormalized(value);
+				setParamNormalized(ii, value);
+				performEdit(ii, value);
 			}
 			else
 			{
@@ -82,7 +88,7 @@ tresult PLUGIN_API BLITSaw_vst3_controller::getState (IBStream* state)
 {
 	if( state )
 	{
-		for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
+		for( int ii = 0; ii < getParameterCount(); ii++ )
 		{
 			ParamValue value = parameters.getParameter(ii)->getNormalized();
 			if( state->write(&value, sizeof(ParamValue)) != kResultTrue )
