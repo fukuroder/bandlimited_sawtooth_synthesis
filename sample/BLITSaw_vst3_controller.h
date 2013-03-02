@@ -20,9 +20,10 @@ public:
 
 	virtual IPlugView* PLUGIN_API createView(const char* name);
 
-	//virtual tresult PLUGIN_API setComponentState (IBStream* /*state*/);
-
-	virtual tresult PLUGIN_API setComponentHandler (IComponentHandler* handler);
+	//virtual tresult PLUGIN_API setComponentState (IBStream* state);
+	virtual tresult PLUGIN_API setState (IBStream* state);
+	virtual tresult PLUGIN_API getState (IBStream* state);
+	//virtual tresult PLUGIN_API setComponentHandler (IComponentHandler* handler);
 };
 
 // Feedback parameter

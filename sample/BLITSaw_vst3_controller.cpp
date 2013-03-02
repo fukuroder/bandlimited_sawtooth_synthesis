@@ -1,5 +1,6 @@
 ﻿#include "BLITSaw_vst3_controller.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
+#include "pluginterfaces/base/ibstream.h"
 #include <math.h>
 
 namespace Steinberg {namespace Vst {
@@ -42,35 +43,54 @@ tresult PLUGIN_API BLITSaw_vst3_controller::initialize(FUnknown* context)
 //-------------------------------------------------------------------------
 IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
 {
-	// TODO: とりあえずここで
-	for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
-	{
-		performEdit(ii, getParamNormalized(ii) );
-	}
-
+	VST3Editor* editor = nullptr;
 	if (name != nullptr && strcmp(name, ViewType::kEditor) == 0)
 	{
-		VST3Editor *editor= new VSTGUI::VST3Editor(this, "view", "BLITSaw_vst3.uidesc");
-		editor->setIdleRate(50);
-		return editor;
+		editor= new VSTGUI::VST3Editor(this, "view", "BLITSaw_vst3.uidesc");
+		if( editor ) editor->setIdleRate(50);
 	}
-	return nullptr;
+	return editor;
 }
 
-//-------------------------------------------------------------------------
-tresult PLUGIN_API BLITSaw_vst3_controller::setComponentHandler(IComponentHandler* handler)
+//tresult PLUGIN_API BLITSaw_vst3_controller::setComponentState (IBStream* state)
+//{
+//	return kResultOk;
+//}
+
+tresult PLUGIN_API BLITSaw_vst3_controller::setState (IBStream* state)
 {
-	tresult result = EditController::setComponentHandler(handler);
-	if (result != kResultOk)
-	{ 
-		return result; 
+	// set parameter
+	if( state )
+	{
+		for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
+		{
+			ParamValue value;
+			if( state->read(&value, sizeof(ParamValue)) == kResultTrue )
+			{
+				parameters.getParameter(ii)->setNormalized(value);
+			}
+			else
+			{
+				return kResultFalse;
+			}
+		}
 	}
+	return kResultOk;
+}
 
-	//for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
-	//{
-	//	performEdit(ii, getParamNormalized(ii) );
-	//}
-
+tresult PLUGIN_API BLITSaw_vst3_controller::getState (IBStream* state)
+{
+	if( state )
+	{
+		for( int ii = 0; ii < parameters.getParameterCount(); ii++ )
+		{
+			ParamValue value = parameters.getParameter(ii)->getNormalized();
+			if( state->write(&value, sizeof(ParamValue)) != kResultTrue )
+			{
+				return kResultFalse;
+			}
+		}
+	}
 	return kResultOk;
 }
 
