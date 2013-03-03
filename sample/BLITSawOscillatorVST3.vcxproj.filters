@@ -111,15 +111,6 @@
     <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_win32.cpp">
       <Filter>Source Files\vstgui</Filter>
     </ClCompile>
-    <ClCompile Include="BLITSaw_vst3_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BLITSaw_vst3_entry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BLITSaw_vst3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="resonance_filter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,8 +123,14 @@
     <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BLITSaw_vst3_guids.h">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="BLITSaw_controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BLITSaw_entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BLITSaw_processor.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,18 +242,21 @@
     <ClInclude Include="resonance_filter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BLITSaw_vst3.h">
+    <ClInclude Include="BLITSaw_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BLITSaw_vst3_controller.h">
+    <ClInclude Include="BLITSaw_guids.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BLITSaw_processor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="BLITSaw_vst3.rc" />
+    <None Include="BLITSaw.def" />
+    <None Include="BLITSaw.uidesc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BLITSaw_vst3.uidesc" />
-    <None Include="BLITSaw_vst3.def" />
+    <ResourceCompile Include="BLITSaw.rc" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
-﻿#include "BLITSaw_vst3.h"
-#include "BLITSaw_vst3_guids.h"
+﻿#include "BLITSaw_processor.h"
+#include "BLITSaw_guids.h"
 #include "pluginterfaces/base/ibstream.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 #include "pluginterfaces/vst/ivstevents.h"

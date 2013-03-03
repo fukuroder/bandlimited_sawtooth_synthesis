@@ -110,7 +110,7 @@
     </ResourceCompile>
     <Link>
       <OutputFile>$(CommonProgramFiles)\VST3\Steinberg\$(ProjectName)$(TargetExt)</OutputFile>
-      <ModuleDefinitionFile>BLITSaw_vst3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>BLITSaw.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)again.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -142,7 +142,7 @@
       <AdditionalIncludeDirectories>../../../../..;../../../../../vstplugins/vst;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <ModuleDefinitionFile>BLITSaw_vst3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>BLITSaw.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)again.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
@@ -169,7 +169,7 @@
     </ResourceCompile>
     <Link>
       <OutputFile>$(CommonProgramFiles)\VST3\Steinberg\$(ProjectName)$(TargetExt)</OutputFile>
-      <ModuleDefinitionFile>BLITSaw_vst3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>BLITSaw.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -199,7 +199,7 @@
     </ResourceCompile>
     <Link>
       <OutputFile>$(CommonProgramW6432)\VST3\Steinberg\$(ProjectName)$(TargetExt)</OutputFile>
-      <ModuleDefinitionFile>BLITSaw_vst3.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>BLITSaw.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -227,13 +227,12 @@
     <ClCompile Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.cpp" />
     <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_uidescription_win32.cpp" />
     <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_win32.cpp" />
-    <ClCompile Include="BLITSaw_vst3_controller.cpp" />
-    <ClCompile Include="BLITSaw_vst3_entry.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp" />
-    <ClCompile Include="BLITSaw_vst3.cpp" />
-    <ClCompile Include="BLITSaw_vst3_guids.h" />
+    <ClCompile Include="BLITSaw_controller.cpp" />
+    <ClCompile Include="BLITSaw_entry.cpp" />
+    <ClCompile Include="BLITSaw_processor.cpp" />
     <ClCompile Include="resonance_filter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -269,11 +268,12 @@
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstguieditor.h" />
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstparameters.h" />
     <ClInclude Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.h" />
-    <ClInclude Include="BLITSaw_vst3_controller.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator_note.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator_note_vst3.h" />
-    <ClInclude Include="BLITSaw_vst3.h" />
+    <ClInclude Include="BLITSaw_controller.h" />
+    <ClInclude Include="BLITSaw_guids.h" />
+    <ClInclude Include="BLITSaw_processor.h" />
     <ClInclude Include="resonance_filter.h" />
   </ItemGroup>
   <ItemGroup>
@@ -282,11 +282,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="BLITSaw_vst3.rc" />
+    <None Include="BLITSaw.def" />
+    <None Include="BLITSaw.uidesc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BLITSaw_vst3.def" />
-    <None Include="BLITSaw_vst3.uidesc" />
+    <ResourceCompile Include="BLITSaw.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -220,10 +220,10 @@
     <ClCompile Include="bandlimited_sawtooth_oscillator.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp" />
-    <ClCompile Include="BLITSaw_vst2_entry.cpp" />
-    <ClCompile Include="BLITSaw_vst3.cpp" />
-    <ClCompile Include="BLITSaw_vst3_controller.cpp" />
-    <ClCompile Include="BLITSaw_vst3_entry.cpp" />
+    <ClCompile Include="BLITSaw_controller.cpp" />
+    <ClCompile Include="BLITSaw_entry.cpp" />
+    <ClCompile Include="BLITSaw_entry_vst2.cpp" />
+    <ClCompile Include="BLITSaw_processor.cpp" />
     <ClCompile Include="resonance_filter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -260,19 +260,14 @@
     <ClInclude Include="bandlimited_sawtooth_oscillator.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator_note.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator_note_vst3.h" />
-    <ClInclude Include="BLITSaw_vst3.h" />
-    <ClInclude Include="BLITSaw_vst3_controller.h" />
-    <ClInclude Include="BLITSaw_vst3_guids.h" />
+    <ClInclude Include="BLITSaw_controller.h" />
+    <ClInclude Include="BLITSaw_guids.h" />
+    <ClInclude Include="BLITSaw_processor.h" />
     <ClInclude Include="resonance_filter.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BLITSaw.uidesc" />
     <None Include="BLITSaw_vst2.def" />
-    <None Include="BLITSaw_vst3.uidesc">
-      <FileType>Document</FileType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="BLITSaw_vst3.rc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vstsdk3\base\win\base_vc10.vcxproj">
@@ -281,6 +276,9 @@
     <ProjectReference Include="..\vstsdk3\public.sdk\source\vst\vst2wrapper\win\vst2wrapper_vc10.vcxproj">
       <Project>{1c43ceee-6b1c-42d3-9bcb-389991b71767}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BLITSaw.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,6 @@
-﻿#include "BLITSaw_vst3.h"
-#include "BLITSaw_vst3_controller.h"
-#include "BLITSaw_vst3_guids.h"
+﻿#include "BLITSaw_processor.h"
+#include "BLITSaw_controller.h"
+#include "BLITSaw_guids.h"
 #include "public.sdk/source/main//pluginfactoryvst3.h"
 
 //------------------------------------------------------------------------
