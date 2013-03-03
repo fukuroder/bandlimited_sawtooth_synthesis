@@ -51,7 +51,7 @@ IPlugView* PLUGIN_API BLITSaw_controller::createView (const char* name)
 	VST3Editor* editor = nullptr;
 	if (name != nullptr && strcmp(name, ViewType::kEditor) == 0)
 	{
-		editor= new VSTGUI::VST3Editor(this, "view", "BLITSaw_processor.uidesc");
+		editor= new VSTGUI::VST3Editor(this, "view", "BLITSaw.uidesc");
 		if( editor ) editor->setIdleRate(50);
 	}
 	return editor;
