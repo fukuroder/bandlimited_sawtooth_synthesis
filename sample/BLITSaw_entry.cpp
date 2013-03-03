@@ -42,7 +42,7 @@ DEF_CLASS2(
 	PlugType::kInstrumentSynth,	/*サブカテゴリー*/
 	"1.0.0.000",				/*プラグインバージョン*/
 	kVstVersionString,			/*（決め打ち）*/
-	BLITSaw_vst3::createInstance		/*BLITSaw_vst3インスタンス生成メソッド*/
+	BLITSaw_processor::createInstance		/*BLITSaw_processorインスタンス生成メソッド*/
 )
 
 /*コントローラーの登録*/
@@ -55,6 +55,6 @@ DEF_CLASS2(
 	"",								/*（未使用）*/
 	"1.0.0.000",					/*プラグインバージョン*/
 	kVstVersionString,				/*（決め打ち）*/
-	BLITSaw_vst3_controller::create	/*BLITSaw_vst3_controllerインスタンス生成メソッド*/
+	BLITSaw_controller::create	/*BLITSaw_controllerインスタンス生成メソッド*/
 )
 END_FACTORY

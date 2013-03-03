@@ -10,12 +10,12 @@
 namespace Steinberg { namespace Vst {
 
 //-------------------------------------------------------------------------
-// BLITSaw_vst3 Declaration
+// BLITSaw_processor Declaration
 //-------------------------------------------------------------------------
-class BLITSaw_vst3 : public AudioEffect
+class BLITSaw_processor : public AudioEffect
 {
 	/*コンストラクタ*/ 
-	BLITSaw_vst3();
+	BLITSaw_processor();
 
 public:
 	/*インスタンス生成*/

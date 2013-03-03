@@ -4,12 +4,12 @@
 namespace Steinberg {namespace Vst {
 
 //-------------------------------------------------------------------------
-// BLITSaw_vst3_controller Declaration
+// BLITSaw_controller Declaration
 //-------------------------------------------------------------------------
-class BLITSaw_vst3_controller : public EditController
+class BLITSaw_controller : public EditController
 {
 	// コンストラクタ
-	BLITSaw_vst3_controller();
+	BLITSaw_controller();
 
 public:
 	// インスタンス生成

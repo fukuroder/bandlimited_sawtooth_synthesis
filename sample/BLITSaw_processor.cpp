@@ -8,21 +8,21 @@
 namespace Steinberg { namespace Vst {
 
 //-------------------------------------------------------------------------
-// BLITSaw_vst3 Implementation
+// BLITSaw_processor Implementation
 //-------------------------------------------------------------------------
-BLITSaw_vst3::BLITSaw_vst3()
+BLITSaw_processor::BLITSaw_processor()
 {
 	setControllerClass(BLITSawControllerID);
 }
 
 //-------------------------------------------------------------------------
-FUnknown* BLITSaw_vst3::createInstance(void* context)
+FUnknown* BLITSaw_processor::createInstance(void* context)
 {
-	return (IAudioProcessor*)new BLITSaw_vst3();
+	return (IAudioProcessor*)new BLITSaw_processor();
 }
 
 //-------------------------------------------------------------------------
-tresult PLUGIN_API BLITSaw_vst3::initialize(FUnknown* context)
+tresult PLUGIN_API BLITSaw_processor::initialize(FUnknown* context)
 {
 	/*親クラス初期化処理*/
 	tresult result = AudioEffect::initialize(context);
@@ -39,7 +39,7 @@ tresult PLUGIN_API BLITSaw_vst3::initialize(FUnknown* context)
 }
 
 //-------------------------------------------------------------------------
-tresult PLUGIN_API BLITSaw_vst3::setBusArrangements(
+tresult PLUGIN_API BLITSaw_processor::setBusArrangements(
 	SpeakerArrangement* inputs,
 	int32 numIns,
 	SpeakerArrangement* outputs,
@@ -52,7 +52,7 @@ tresult PLUGIN_API BLITSaw_vst3::setBusArrangements(
 	return kResultFalse;
 }
 
-tresult PLUGIN_API BLITSaw_vst3::setProcessing (TBool state)
+tresult PLUGIN_API BLITSaw_processor::setProcessing (TBool state)
 {
 	// state 起動1 終了0
 	if( state == 1 )
@@ -69,7 +69,7 @@ tresult PLUGIN_API BLITSaw_vst3::setProcessing (TBool state)
 }
 
 //-------------------------------------------------------------------------
-tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
+tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 {
 	// update parameters
 	if( data.inputParameterChanges )

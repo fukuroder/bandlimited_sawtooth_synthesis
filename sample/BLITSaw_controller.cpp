@@ -6,19 +6,19 @@
 namespace Steinberg {namespace Vst {
 
 //-------------------------------------------------------------------------
-BLITSaw_vst3_controller::BLITSaw_vst3_controller()
+BLITSaw_controller::BLITSaw_controller()
 {
 	setKnobMode( kLinearMode );
 }
 
 //-------------------------------------------------------------------------
-FUnknown* BLITSaw_vst3_controller::create(void* context)
+FUnknown* BLITSaw_controller::create(void* context)
 {
-	return (IEditController*)new BLITSaw_vst3_controller();
+	return (IEditController*)new BLITSaw_controller();
 }
 
 //-------------------------------------------------------------------------
-tresult PLUGIN_API BLITSaw_vst3_controller::initialize(FUnknown* context)
+tresult PLUGIN_API BLITSaw_controller::initialize(FUnknown* context)
 {
 	tresult result = EditController::initialize(context); 
 	if (result != kResultOk)
@@ -41,7 +41,7 @@ tresult PLUGIN_API BLITSaw_vst3_controller::initialize(FUnknown* context)
 }
 
 //-------------------------------------------------------------------------
-IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
+IPlugView* PLUGIN_API BLITSaw_controller::createView (const char* name)
 {
 	for( int ii = 0; ii < getParameterCount(); ii++ )
 	{
@@ -51,18 +51,18 @@ IPlugView* PLUGIN_API BLITSaw_vst3_controller::createView (const char* name)
 	VST3Editor* editor = nullptr;
 	if (name != nullptr && strcmp(name, ViewType::kEditor) == 0)
 	{
-		editor= new VSTGUI::VST3Editor(this, "view", "BLITSaw_vst3.uidesc");
+		editor= new VSTGUI::VST3Editor(this, "view", "BLITSaw_processor.uidesc");
 		if( editor ) editor->setIdleRate(50);
 	}
 	return editor;
 }
 
-//tresult PLUGIN_API BLITSaw_vst3_controller::setComponentState (IBStream* state)
+//tresult PLUGIN_API BLITSaw_controller::setComponentState (IBStream* state)
 //{
 //	return kResultOk;
 //}
 
-tresult PLUGIN_API BLITSaw_vst3_controller::setState (IBStream* state)
+tresult PLUGIN_API BLITSaw_controller::setState (IBStream* state)
 {
 	// set parameter
 	if( state )
@@ -84,7 +84,7 @@ tresult PLUGIN_API BLITSaw_vst3_controller::setState (IBStream* state)
 	return kResultOk;
 }
 
-tresult PLUGIN_API BLITSaw_vst3_controller::getState (IBStream* state)
+tresult PLUGIN_API BLITSaw_controller::getState (IBStream* state)
 {
 	if( state )
 	{
