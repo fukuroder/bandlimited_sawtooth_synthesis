@@ -32,7 +32,7 @@ tresult PLUGIN_API BLITSaw_vst3::initialize(FUnknown* context)
 	}
 
 	/*バスの設定*/
-	addAudioOutput(STR16("Stereo Out"), SpeakerArr::kStereo);
+	addAudioOutput(STR16("Stereo Out"), SpeakerArr::kMono);
 	addEventInput (STR16 ("Event Input"), 1);
 
 	return kResultOk;
@@ -45,7 +45,7 @@ tresult PLUGIN_API BLITSaw_vst3::setBusArrangements(
 	SpeakerArrangement* outputs,
 	int32 numOuts
 ){
-	if (numIns == 0 && numOuts == 1 && outputs[0] == SpeakerArr::kStereo)
+	if (numIns == 0 && numOuts == 1 && outputs[0] == SpeakerArr::kMono)
 	{
 		return AudioEffect::setBusArrangements (inputs, numIns, outputs, numOuts);
 	}
@@ -244,7 +244,7 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 	/*--------*/
 	/*音声処理*/
 	/*--------*/
-	if (data.numInputs == 0 && data.numOutputs == 1 )
+	if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 1 )
 	{
 		for(auto note = _notes.begin(); note != _notes.end(); ++note)
 		{
@@ -252,38 +252,33 @@ tresult PLUGIN_API BLITSaw_vst3::process(ProcessData& data)
 			note->updateFrequency();
 		}
 
-		if( data.outputs[0].numChannels == 2 )
+		float* out = data.outputs[0].channelBuffers32[0];
+
+		const int32 sampleFrames = data.numSamples;
+		for( int ii = 0; ii < sampleFrames; ii++ )
 		{
-			float** out = data.outputs[0].channelBuffers32;
+			double value = 0.0;
+			for(auto note = _notes.begin(); note != _notes.end(); ++note)
+			{	
+				if( note->adsr == bandlimited_sawtooth_oscillator_note::Silent )continue;
 
-			const int32 sampleFrames = data.numSamples;
-			for( int ii = 0; ii < sampleFrames; ii++ )
-			{
-				double value = 0.0;
-				for(auto note = _notes.begin(); note != _notes.end(); ++note)
-				{	
-					if( note->adsr == bandlimited_sawtooth_oscillator_note::Silent )continue;
-
-					// ノート毎の音を足し合わせる
-					value += note->saw * note->envelope * note->velocity();
+				// ノート毎の音を足し合わせる
+				value += note->saw * note->envelope * note->velocity();
 		
-					// オシレーター更新
-					blit.updateOcsillater( *note );
+				// オシレーター更新
+				blit.updateOcsillater( *note );
 
-					// エンベロープ更新
-					blit.updateEnvelope( *note );
-				}
-
-				//
-				// フィルタを掛けたければ掛ける
-				//
-				double filterd_value = _filter.process(value);
-
-				// 出力バッファに設定する
-				double pan = 0.0;
-				out[0][ii] = static_cast<float>( filterd_value * (1.0 - pan) * 0.5 );
-				out[1][ii] = static_cast<float>( filterd_value * (1.0 + pan) * 0.5 );
+				// エンベロープ更新
+				blit.updateEnvelope( *note );
 			}
+
+			//
+			// フィルタを掛けたければ掛ける
+			//
+			double filterd_value = _filter.process(value);
+
+			// 出力バッファに設定する
+			out[ii] = static_cast<float>( filterd_value );
 		}
 	}
 	return kResultOk;
