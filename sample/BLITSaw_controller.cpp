@@ -90,7 +90,7 @@ tresult PLUGIN_API BLITSaw_controller::getState (IBStream* state)
 	{
 		for( int ii = 0; ii < getParameterCount(); ii++ )
 		{
-			ParamValue value = parameters.getParameter(ii)->getNormalized();
+			ParamValue value = getParamNormalized(ii);
 			if( state->write(&value, sizeof(ParamValue)) != kResultTrue )
 			{
 				return kResultFalse;
