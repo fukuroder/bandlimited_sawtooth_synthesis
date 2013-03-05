@@ -1,52 +1,58 @@
 ﻿#define _USE_MATH_DEFINES
-#include "math.h"
+#include <math.h>
 #include "resonance_filter.h"
 
+//
 resonance_filter::resonance_filter()
 {
 	reset();
 }
 
+//
 void resonance_filter::setSampleRate(double sampleRate)
 {
 	_sampleRate = sampleRate;
 	reset();
 }
 
+//
 void resonance_filter::reset()
 {
 	_x_buf[0] = _x_buf[1] = 0.0f;
 	_y_buf[0] = _y_buf[1] = 0.0f;
 }
 
+//
 void resonance_filter::setCutoff(double value)
 {
 	_param_filter_cutoff = value;
 }
 
+//
 void resonance_filter::setResonance(double value)
 {
 	_param_filter_resonance = value;
 }
 
+//
 void resonance_filter::setHigh(double value)
 {
 	_param_filter_high = value;
 }
 
+//
 void resonance_filter::setBand(double value)
 {
 	_param_filter_band = value;
 }
 
+//
 void resonance_filter::setLow(double value)
 {
 	_param_filter_low = value;
 }
 
-//----------------
-// TODO: 説明
-//----------------
+//
 void resonance_filter::updateFilter()
 {
 	bool a = false;
@@ -125,6 +131,7 @@ void resonance_filter::updateFilter()
 	}
 }
 
+//
 double resonance_filter::process(double value)
 {
 	double filterd_value

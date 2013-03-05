@@ -24,14 +24,14 @@ FUnknown* BLITSaw_processor::createInstance(void* context)
 //-------------------------------------------------------------------------
 tresult PLUGIN_API BLITSaw_processor::initialize(FUnknown* context)
 {
-	/*親クラス初期化処理*/
+	// base class initialization 
 	tresult result = AudioEffect::initialize(context);
 	if(result != kResultOk)
 	{
 		return result;
 	}
 
-	/*バスの設定*/
+	// set bus
 	addAudioOutput(STR16("Stereo Out"), SpeakerArr::kMono);
 	addEventInput (STR16 ("Event Input"), 1);
 
@@ -47,21 +47,24 @@ tresult PLUGIN_API BLITSaw_processor::setBusArrangements(
 ){
 	if (numIns == 0 && numOuts == 1 && outputs[0] == SpeakerArr::kMono)
 	{
-		return AudioEffect::setBusArrangements (inputs, numIns, outputs, numOuts);
+		return AudioEffect::setBusArrangements(inputs, numIns, outputs, numOuts);
 	}
 	return kResultFalse;
 }
 
 tresult PLUGIN_API BLITSaw_processor::setProcessing (TBool state)
 {
-	// state 起動1 終了0
-	if( state == 1 )
+	if( state == 1)
 	{
+		// setup
+
 		for(auto note = _notes.begin(); note != _notes.end(); ++note)
 		{
+			// set sample rate
 			note->setSampleRate( processSetup.sampleRate );
 		}
 
+		// set sample rate
 		_filter.setSampleRate( processSetup.sampleRate );
 	}
 
@@ -71,7 +74,9 @@ tresult PLUGIN_API BLITSaw_processor::setProcessing (TBool state)
 //-------------------------------------------------------------------------
 tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 {
+	//-------------------
 	// update parameters
+	//-------------------
 	if( data.inputParameterChanges )
 	{
 		int32 numParamsChanged = data.inputParameterChanges->getParameterCount();
@@ -147,8 +152,9 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 		}
 	}
 
-
+	//----------------
 	// process events
+	//----------------
 	if( data.inputEvents )
 	{
 		int nEventCount = data.inputEvents->getEventCount();
@@ -208,11 +214,18 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 			}
 			else if( e.type == Event::kDataEvent )
 			{
-				unsigned char status = e.data.bytes[0] & 0xf0;	// ignoring channel
+				//-------
+				// event
+				//-------
 
+				unsigned char status = e.data.bytes[0] & 0xf0;	// ignoring channel
 
 				if( status == 0xE0 )
 				{
+					//-----------------
+					// pitch bend event
+					//-----------------
+
 					unsigned char data1 = e.data.bytes[1] & 0x7f;
 					unsigned char data2 = e.data.bytes[2] & 0x7f;
 
@@ -240,7 +253,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 	}
 
 	_filter.updateFilter();
-
+	
 	/*--------*/
 	/*音声処理*/
 	/*--------*/
@@ -251,9 +264,9 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 			// ピッチを更新
 			note->updateFrequency();
 		}
-
+		
 		float* out = data.outputs[0].channelBuffers32[0];
-
+	
 		const int32 sampleFrames = data.numSamples;
 		for( int ii = 0; ii < sampleFrames; ii++ )
 		{
@@ -261,23 +274,23 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 			for(auto note = _notes.begin(); note != _notes.end(); ++note)
 			{	
 				if( note->adsr == bandlimited_sawtooth_oscillator_note::Silent )continue;
-
-				// ノート毎の音を足し合わせる
+	
+				// add
 				value += note->saw * note->envelope * note->velocity();
-		
-				// オシレーター更新
+			
+				// update oscillater
 				blit.updateOcsillater( *note );
-
-				// エンベロープ更新
+	
+				// update envelope
 				blit.updateEnvelope( *note );
 			}
-
-			//
-			// フィルタを掛けたければ掛ける
-			//
+	
+			// filtering
+	
+	
 			double filterd_value = _filter.process(value);
-
-			// 出力バッファに設定する
+	
+			// set output buffer
 			out[ii] = static_cast<float>( filterd_value );
 		}
 	}

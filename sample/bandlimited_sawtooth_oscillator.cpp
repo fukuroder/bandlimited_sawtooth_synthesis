@@ -18,6 +18,7 @@ bandlimited_sawtooth_oscillator::bandlimited_sawtooth_oscillator()
 	_sinTable[ii] = 0.0;
 }
 
+//
 void bandlimited_sawtooth_oscillator::setFeedback(double value)
 {
 	_feedback = value;
@@ -116,6 +117,7 @@ void bandlimited_sawtooth_oscillator::updateEnvelope(bandlimited_sawtooth_oscill
 	}
 }
 
+//
 void bandlimited_sawtooth_oscillator::setAttackTime(double attackTime, int sampleRate)
 {
 	if( attackTime > 1.0e-12)
@@ -128,6 +130,7 @@ void bandlimited_sawtooth_oscillator::setAttackTime(double attackTime, int sampl
 	}
 }
 
+//
 void bandlimited_sawtooth_oscillator::setReleaseTime(double releaseTime, int sampleRate)
 {
 	if( releaseTime > 1.0e-12)
