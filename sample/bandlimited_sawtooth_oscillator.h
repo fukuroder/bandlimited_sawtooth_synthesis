@@ -20,11 +20,7 @@ public:
 	void updateEnvelope(bandlimited_sawtooth_oscillator_note &note);
 
 	//
-	void updateOcsillater(bandlimited_sawtooth_oscillator_note& note);
-
-	//
-	void initializeOcsillater( bandlimited_sawtooth_oscillator_note& note );
-
+	void updateOscillater(bandlimited_sawtooth_oscillator_note& note);
 	//
 	double _attack_decrement;
 

@@ -74,7 +74,7 @@ double bandlimited_sawtooth_oscillator::BLIT( double t, int N )
 //-------------
 //
 //-------------
-void bandlimited_sawtooth_oscillator::updateOcsillater(bandlimited_sawtooth_oscillator_note& note)
+void bandlimited_sawtooth_oscillator::updateOscillater(bandlimited_sawtooth_oscillator_note& note)
 {
 	note.t += note.dt;
 	if ( 1.0 <= note.t )note.t -= 1.0;

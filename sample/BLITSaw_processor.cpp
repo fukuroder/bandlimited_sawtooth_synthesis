@@ -279,7 +279,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 				value += note->saw * note->envelope * note->velocity();
 			
 				// update oscillater
-				blit.updateOcsillater( *note );
+				blit.updateOscillater( *note );
 	
 				// update envelope
 				blit.updateEnvelope( *note );
