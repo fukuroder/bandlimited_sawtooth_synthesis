@@ -23,10 +23,13 @@ public:
 	void updateOscillater(bandlimited_sawtooth_oscillator_note& note);
 
 	//
-	void setAttackTime(double attackTime, int sampleRate);
+	void setAttackTime(double attackTime);
 
 	//
-	void setReleaseTime(double releaseTime, int sampleRate);
+	void setReleaseTime(double releaseTime);
+
+	//
+	void setSampleRate(int srate);
 
 protected:
 	//
@@ -40,6 +43,9 @@ protected:
 
 	//
 	double _release_decrement;
+
+	//
+	int _srate;
 
 	//
 	double LinearInterpolatedSin( double iT );

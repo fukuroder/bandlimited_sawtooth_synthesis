@@ -16,6 +16,8 @@ bandlimited_sawtooth_oscillator::bandlimited_sawtooth_oscillator()
 	}
 
 	_sinTable[ii] = 0.0;
+
+	_srate = 44100;
 }
 
 //
@@ -82,6 +84,7 @@ void bandlimited_sawtooth_oscillator::updateOscillater(bandlimited_sawtooth_osci
 	note.saw = note.saw*_feedback + BLIT(note.t, note.n)*note.dt;
 }
 
+//
 void bandlimited_sawtooth_oscillator::updateEnvelope(bandlimited_sawtooth_oscillator_note &note)
 {
 	if( note.adsr == bandlimited_sawtooth_oscillator_note::Attack )
@@ -118,11 +121,11 @@ void bandlimited_sawtooth_oscillator::updateEnvelope(bandlimited_sawtooth_oscill
 }
 
 //
-void bandlimited_sawtooth_oscillator::setAttackTime(double attackTime, int sampleRate)
+void bandlimited_sawtooth_oscillator::setAttackTime(double attackTime)
 {
 	if( attackTime > 1.0e-12)
 	{
-		_attack_decrement = 1.0 / (attackTime * sampleRate);
+		_attack_decrement = 1.0 / (attackTime * _srate);
 	}
 	else
 	{
@@ -131,14 +134,20 @@ void bandlimited_sawtooth_oscillator::setAttackTime(double attackTime, int sampl
 }
 
 //
-void bandlimited_sawtooth_oscillator::setReleaseTime(double releaseTime, int sampleRate)
+void bandlimited_sawtooth_oscillator::setReleaseTime(double releaseTime)
 {
 	if( releaseTime > 1.0e-12)
 	{
-		_release_decrement = 1.0 / (releaseTime * sampleRate);
+		_release_decrement = 1.0 / (releaseTime * _srate);
 	}
 	else
 	{
 		_release_decrement = 1.0;
 	}
+}
+
+//
+void bandlimited_sawtooth_oscillator::setSampleRate(int srate)
+{
+	_srate = srate;
 }

@@ -66,6 +66,9 @@ tresult PLUGIN_API BLITSaw_processor::setProcessing (TBool state)
 
 		// set sample rate
 		_filter.setSampleRate( processSetup.sampleRate );
+
+		// set sample rate
+		blit.setSampleRate( processSetup.sampleRate );
 	}
 
 	return kResultOk;
@@ -117,12 +120,12 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 					else if( id == attack )
 					{
 						double attack_time = value * 0.2; // [0, 0.2]
-						blit.setAttackTime( attack_time, processSetup.sampleRate );
+						blit.setAttackTime( attack_time );
 					}
 					else if( id == release )
 					{
 						double release_time = value * 0.2; // [0, 0.2]
-						blit.setReleaseTime( release_time, processSetup.sampleRate );
+						blit.setReleaseTime( release_time );
 					}
 					else if( id == cutoff )
 					{
