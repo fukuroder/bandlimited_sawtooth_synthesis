@@ -37,7 +37,6 @@ int32 bandlimited_sawtooth_oscillator_note_vst3::id()const
 	return _noteOn.pitch;
 }
 
-
 //---------
 //
 //---------
@@ -76,16 +75,19 @@ void bandlimited_sawtooth_oscillator_note_vst3::kill()
 {
 }
 
+//
 void bandlimited_sawtooth_oscillator_note_vst3::setFinePitch(double finePitch)
 {
 	_param_osci_fine = finePitch;
 }
 
+//
 void bandlimited_sawtooth_oscillator_note_vst3::setCorasePitch(double CorasePitch)
 {
 	_param_osci_coarse = CorasePitch;
 }
 
+//
 void bandlimited_sawtooth_oscillator_note_vst3::setPitchBend(double pitchBend)
 {
 	_pitch_bend = pitchBend;

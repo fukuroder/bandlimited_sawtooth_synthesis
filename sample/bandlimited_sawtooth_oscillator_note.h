@@ -17,8 +17,6 @@ public:
 	/// コンストラクタ.
 	bandlimited_sawtooth_oscillator_note();
 
-	//void updateEnvelope();
-
 	/// ノートオン.
 	void trigger(double pitch);
 

@@ -57,15 +57,10 @@ IPlugView* PLUGIN_API BLITSaw_controller::createView (const char* name)
 	return editor;
 }
 
-//tresult PLUGIN_API BLITSaw_controller::setComponentState (IBStream* state)
-//{
-//	return kResultOk;
-//}
-
 tresult PLUGIN_API BLITSaw_controller::setState (IBStream* state)
 {
 	// set parameter
-	if( state )
+	if( state != nullptr )
 	{
 		for( int ii = 0; ii < getParameterCount(); ii++ )
 		{
@@ -84,9 +79,10 @@ tresult PLUGIN_API BLITSaw_controller::setState (IBStream* state)
 	return kResultOk;
 }
 
+//
 tresult PLUGIN_API BLITSaw_controller::getState (IBStream* state)
 {
-	if( state )
+	if( state != nullptr )
 	{
 		for( int ii = 0; ii < getParameterCount(); ii++ )
 		{
