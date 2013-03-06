@@ -4,6 +4,22 @@
 
 //
 resonance_filter::resonance_filter()
+:_filter_a0(-1.0)
+,_filter_a1(-1.0)
+,_filter_a2(-1.0)
+,_filter_b1(-1.0)
+,_filter_b2(-1.0)
+,_param_filter_cutoff_old(-1.0)
+,_param_filter_resonance_old(-1.0)
+,_param_filter_high_old(-1.0)
+,_param_filter_band_old(-1.0)
+,_param_filter_low_old(-1.0)
+,_param_filter_cutoff(-1.0)
+,_param_filter_resonance(-1.0)
+,_param_filter_high(-1.0)
+,_param_filter_band(-1.0)
+,_param_filter_low(-1.0)
+,_sampleRate(44100)
 {
 	reset();
 }
@@ -18,8 +34,10 @@ void resonance_filter::setSampleRate(double sampleRate)
 //
 void resonance_filter::reset()
 {
-	_x_buf[0] = _x_buf[1] = 0.0f;
-	_y_buf[0] = _y_buf[1] = 0.0f;
+	_x_buf[0] = 0.0;
+	_x_buf[1] = 0.0;
+	_y_buf[0] = 0.0;
+	_y_buf[1] = 0.0;
 }
 
 //
