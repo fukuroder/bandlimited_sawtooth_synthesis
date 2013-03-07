@@ -3,30 +3,24 @@
 
 namespace Steinberg {namespace Vst {
 
-//-------------------------------------------------------------------------
-// BLITSaw_controller Declaration
-//-------------------------------------------------------------------------
+// controller
 class BLITSaw_controller : public EditController
 {
-	// コンストラクタ
+	// constructor(private)
 	BLITSaw_controller();
 
 public:
-	// インスタンス生成
+	// create
 	static FUnknown* create(void* context);
 
-	// 初期化（オーバーライド）
+	// from EditController class
 	virtual tresult PLUGIN_API initialize(FUnknown* context);
-
 	virtual IPlugView* PLUGIN_API createView(const char* name);
-
-	//virtual tresult PLUGIN_API setComponentState (IBStream* state);
 	virtual tresult PLUGIN_API setState (IBStream* state);
 	virtual tresult PLUGIN_API getState (IBStream* state);
-	//virtual tresult PLUGIN_API setComponentHandler (IComponentHandler* handler);
 };
 
-// Feedback parameter
+// feedback Parameter
 class BLITSaw_FeedBackParameter : public Parameter
 {
 public:
@@ -34,7 +28,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// coarse pitch parameter
 class BLITSaw_CoarsePitchParameter : public Parameter
 {
 public:
@@ -42,7 +36,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// fine pitch parameter
 class BLITSaw_FinePitchParameter : public Parameter
 {
 public:
@@ -50,7 +44,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// attack parameter
 class BLITSaw_AttackParameter : public Parameter
 {
 public:
@@ -58,7 +52,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// release parameter
 class BLITSaw_ReleaseParameter : public Parameter
 {
 public:
@@ -66,7 +60,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// cutoff parameter
 class BLITSaw_CutoffParameter : public Parameter
 {
 public:
@@ -74,7 +68,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// resonance Parameter
 class BLITSaw_ResonanceParameter : public Parameter
 {
 public:
@@ -82,7 +76,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// high parameter
 class BLITSaw_HighParameter : public Parameter
 {
 public:
@@ -90,7 +84,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// band parameter
 class BLITSaw_BandParameter : public Parameter
 {
 public:
@@ -98,7 +92,7 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-//
+// low parameter
 class BLITSaw_LowParameter : public Parameter
 {
 public:
@@ -106,4 +100,4 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-}}
+}} // namespace

@@ -23,38 +23,37 @@ bool DeinitModule()
 
 using namespace Steinberg::Vst;
 
-//------------------------------------------------------------------------
-// ファクトリ定義
-//------------------------------------------------------------------------
+// define factory
 BEGIN_FACTORY_DEF(
-	"fukuroda",							// 作成者
-	"https://github.com/fukuroder",		// ホムペ
-	"mailto:fukuroder@live.jp"			// メアド
+	"fukuroda",							// vendor
+	"https://github.com/fukuroder",		// url
+	"mailto:fukuroder@live.jp"			// e-mail
 )
 
-/*プロセッサーの登録*/
+// register processor
 DEF_CLASS2(
-	INLINE_UID_FROM_FUID(BLITSawProcessorID),/*（決め打ち）*/
-	PClassInfo::kManyInstances,	/*（決め打ち）*/
-	kVstAudioEffectClass,		/*プロセッサーですよ*/
-	"BLITSawOscillatorVST3",					/*プラグイン名*/
-	kDistributable,		/*プロセッサーとコントローラーが分かれてますよ*/
-	PlugType::kInstrumentSynth,	/*サブカテゴリー*/
-	"1.0.0.000",				/*プラグインバージョン*/
-	kVstVersionString,			/*（決め打ち）*/
-	BLITSaw_processor::createInstance		/*BLITSaw_processorインスタンス生成メソッド*/
+	INLINE_UID_FROM_FUID(BLITSawProcessorID),	// processor's GUID
+	PClassInfo::kManyInstances,					// ?
+	kVstAudioEffectClass,						// category
+	"BLITSawOscillatorVST3",					// plug-in name
+	kDistributable,								// Component flag
+	PlugType::kInstrumentSynth,					// sub category
+	"1.0.0.000",								// plug-in version
+	kVstVersionString,							// VSTSDK version
+	BLITSaw_processor::create					// create method
 )
 
-/*コントローラーの登録*/
+// register controller
 DEF_CLASS2(
-	INLINE_UID_FROM_FUID(BLITSawControllerID),/*（決め打ち）*/
-	PClassInfo::kManyInstances,		/*（決め打ち）*/
-	kVstComponentControllerClass,	/*コントローラーですよ*/
-	"BLITSawOscillatorVST3 Controller",			/*プラグイン名*/
-	0,								/*（未使用）*/
-	"",								/*（未使用）*/
-	"1.0.0.000",					/*プラグインバージョン*/
-	kVstVersionString,				/*（決め打ち）*/
-	BLITSaw_controller::create	/*BLITSaw_controllerインスタンス生成メソッド*/
+	INLINE_UID_FROM_FUID(BLITSawControllerID),	// controller's GUID
+	PClassInfo::kManyInstances,					// ?
+	kVstComponentControllerClass,				// category
+	"BLITSawOscillatorVST3 Controller",			// plug-in name
+	0,											// N/A
+	"",											// N/A
+	"1.0.0.000",								// plug-in version
+	kVstVersionString,							// create method
+	BLITSaw_controller::create					// create method
 )
+
 END_FACTORY

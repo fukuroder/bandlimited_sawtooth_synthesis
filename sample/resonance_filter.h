@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+//
 class resonance_filter
 {
 protected:

@@ -20,13 +20,16 @@ public:
 	/// ノートオン.
 	void trigger(double pitch);
 
+	//
 	void setSampleRate(int srate);
 
 	/// 周波数更新.
 	void updateFrequency(double pitch);
 
+	//
 	void setFinePitch(double finePitch);
 
+	//
 	void setCorasePitch(double CorasePitch);
 
 	/// ノートリリース.
@@ -56,5 +59,6 @@ public:
 	/// 刻み幅.
 	double	dt;
 
+	//
 	int srate;
 };

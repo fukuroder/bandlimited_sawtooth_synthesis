@@ -212,4 +212,4 @@ void BLITSaw_LowParameter::toString(ParamValue normValue, String128 string)const
 	::swprintf_s(string, 128, L"%.3f", normValue);
 }
 
-}}
+}} // namespace

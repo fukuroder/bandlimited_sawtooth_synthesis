@@ -1,8 +1,6 @@
 ﻿#include "bandlimited_sawtooth_oscillator_note.h"
 
-//---------
-//
-//---------
+// constructor
 bandlimited_sawtooth_oscillator_note::bandlimited_sawtooth_oscillator_note()
 :adsr(Silent)
 ,envelope(0.0)
@@ -14,9 +12,7 @@ bandlimited_sawtooth_oscillator_note::bandlimited_sawtooth_oscillator_note()
 {
 }
 
-//---------
-//
-//---------
+// 
 void bandlimited_sawtooth_oscillator_note::trigger(double pitch)
 {	
 	t = 0.5;
@@ -27,23 +23,20 @@ void bandlimited_sawtooth_oscillator_note::trigger(double pitch)
 	updateFrequency(pitch);
 }
 
+//
 void bandlimited_sawtooth_oscillator_note::setSampleRate(int srate)
 {
 	this->srate = srate;
 }
 
-//---------
 //
-//---------
 void bandlimited_sawtooth_oscillator_note::updateFrequency(double pitch)
 {
 	n = static_cast<int>(srate / 2.0 / pitch);
 	dt = pitch / srate;
 }
 
-//---------
 //
-//---------
 void bandlimited_sawtooth_oscillator_note::release()
 {
 	adsr = Release;

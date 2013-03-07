@@ -16,7 +16,7 @@ BLITSaw_processor::BLITSaw_processor()
 }
 
 //-------------------------------------------------------------------------
-FUnknown* BLITSaw_processor::createInstance(void* context)
+FUnknown* BLITSaw_processor::create(void* context)
 {
 	return (IAudioProcessor*)new BLITSaw_processor();
 }
@@ -300,4 +300,4 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 	return kResultOk;
 }
 
-}}
+}} // namespace
