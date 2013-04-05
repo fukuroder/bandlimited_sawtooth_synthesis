@@ -58,19 +58,19 @@ double bandlimited_sawtooth_oscillator::LinearInterpolatedSin( double x )
 //-------------
 double bandlimited_sawtooth_oscillator::BLIT( double t, int N )
 {
-	if( t < 1.0e-12 )// TODO: 要チューニング
+	// 分母
+	double x_denominator = LinearInterpolatedSin( 0.5*t );
+
+	if( x_denominator < 1.0e-12 )// TODO: 要チューニング
 	{
 		// ゼロ割防止。ロピタルの定理を適用
-		return (2.0 * N) * 2.0;
+		return 2.0*(2*N+1);
 	}
 
 	// 分子
-	double x_numerator = LinearInterpolatedSin(::fmod((2.0*N+1.0)/2.0*t, 1.0));
+	double x_numerator = LinearInterpolatedSin(::fmod((N+0.5)*t, 1.0));
 
-	// 分母
-	double x_denominator = LinearInterpolatedSin( t/2.0 );
-
-	return (x_numerator/x_denominator-1.0) * 2.0;
+	return 2.0*x_numerator/x_denominator;
 }
 
 //-------------
@@ -81,7 +81,7 @@ void bandlimited_sawtooth_oscillator::updateOscillater(bandlimited_sawtooth_osci
 	note.t += note.dt;
 	if ( 1.0 <= note.t )note.t -= 1.0;
 
-	note.saw = note.saw*_feedback + BLIT(note.t, note.n)*note.dt;
+	note.saw = note.saw*_feedback + (BLIT(note.t, note.n)-2.0)*note.dt;
 }
 
 //
