@@ -93,8 +93,8 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 					if( id == Leak )
 					{
 						// -> [0.99, 1.0]
-						double feedback = 0.99 + 0.01 * value;  
-						blit.setLeak(feedback);
+						double Leak = 0.99 + 0.01 * value;  
+						blit.setLeak(Leak);
 					}
 				}
 			}
