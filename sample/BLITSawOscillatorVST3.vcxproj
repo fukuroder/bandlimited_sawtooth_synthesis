@@ -221,19 +221,13 @@
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstcomponent.cpp" />
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstcomponentbase.cpp" />
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vsteditcontroller.cpp" />
-    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstguieditor.cpp" />
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstinitiids.cpp" />
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstparameters.cpp" />
-    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.cpp" />
-    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_uidescription_win32.cpp" />
-    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_win32.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator.cpp" />
     <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp" />
-    <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp" />
     <ClCompile Include="BLITSaw_controller.cpp" />
     <ClCompile Include="BLITSaw_entry.cpp" />
     <ClCompile Include="BLITSaw_processor.cpp" />
-    <ClCompile Include="resonance_filter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\vstsdk3\pluginterfaces\base\falignpop.h" />
@@ -270,11 +264,9 @@
     <ClInclude Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator_note.h" />
-    <ClInclude Include="bandlimited_sawtooth_oscillator_note_vst3.h" />
     <ClInclude Include="BLITSaw_controller.h" />
     <ClInclude Include="BLITSaw_guids.h" />
     <ClInclude Include="BLITSaw_processor.h" />
-    <ClInclude Include="resonance_filter.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\vstsdk3\base\win\base_vc10.vcxproj">
@@ -283,10 +275,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BLITSaw.def" />
-    <None Include="BLITSaw.uidesc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="BLITSaw.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

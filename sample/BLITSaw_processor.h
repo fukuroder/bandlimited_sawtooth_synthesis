@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include "public.sdk/source/vst/vstaudioeffect.h"
-#include "bandlimited_sawtooth_oscillator_note_vst3.h"
+#include "bandlimited_sawtooth_oscillator_note.h"
 #include "bandlimited_sawtooth_oscillator.h"
-#include "resonance_filter.h"
 #include <array>
 
 namespace Steinberg { namespace Vst {
@@ -28,32 +27,19 @@ public:
 	virtual tresult PLUGIN_API setProcessing (TBool state);
 	virtual tresult PLUGIN_API process(ProcessData& data);
 
-
 protected:
 
 	// パラメータID.
 	enum
 	{
-		feedback,   //
-		coarse,		//
-		fine,		//
-		attack,		//
-		release,	//
-		cutoff,
-		resonance,
-		high,
-		band,
-		low,
+		Leak,
 	};
 
 	//
-	std::array<bandlimited_sawtooth_oscillator_note_vst3, 8> _notes;
+	std::array<bandlimited_sawtooth_oscillator_note, 8> _notes;
 
 	//
 	bandlimited_sawtooth_oscillator blit;
-
-	//
-	resonance_filter _filter;
 };
 
 }} // namespace

@@ -5,10 +5,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base_vc10", "..\vstsdk3\bas
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BLITSawOscillatorVST3", "BLITSawOscillatorVST3.vcxproj", "{CED7AFB2-D3A8-4135-89FC-FD63E1E5B92F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vst2wrapper", "..\vstsdk3\public.sdk\source\vst\vst2wrapper\win\vst2wrapper_vc10.vcxproj", "{1C43CEEE-6B1C-42D3-9BCB-389991B71767}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BLITSawOscillatorVST2", "BLITSawOscillatorVST2.vcxproj", "{DC985626-245E-4F57-846E-DDBA054021FE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -33,22 +29,6 @@ Global
 		{CED7AFB2-D3A8-4135-89FC-FD63E1E5B92F}.Release|Win32.Build.0 = Release|Win32
 		{CED7AFB2-D3A8-4135-89FC-FD63E1E5B92F}.Release|x64.ActiveCfg = Release|x64
 		{CED7AFB2-D3A8-4135-89FC-FD63E1E5B92F}.Release|x64.Build.0 = Release|x64
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Debug|Win32.ActiveCfg = Debug|Win32
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Debug|Win32.Build.0 = Debug|Win32
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Debug|x64.ActiveCfg = Debug|x64
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Debug|x64.Build.0 = Debug|x64
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Release|Win32.ActiveCfg = Release|Win32
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Release|Win32.Build.0 = Release|Win32
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Release|x64.ActiveCfg = Release|x64
-		{1C43CEEE-6B1C-42D3-9BCB-389991B71767}.Release|x64.Build.0 = Release|x64
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Debug|Win32.Build.0 = Debug|Win32
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Debug|x64.ActiveCfg = Debug|x64
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Debug|x64.Build.0 = Debug|x64
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Release|Win32.ActiveCfg = Release|Win32
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Release|Win32.Build.0 = Release|Win32
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Release|x64.ActiveCfg = Release|x64
-		{DC985626-245E-4F57-846E-DDBA054021FE}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

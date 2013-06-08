@@ -25,9 +25,6 @@
     <Filter Include="Source Files\vst3\public.sdk\main">
       <UniqueIdentifier>{abc985ab-43f6-4599-9d2a-32c29054946d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\vstgui">
-      <UniqueIdentifier>{b9ec5686-68ec-411a-a14c-638ef8980c35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{bc0bf31d-4c1a-4caa-b856-1cde9d4b4484}</UniqueIdentifier>
     </Filter>
@@ -81,9 +78,6 @@
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vsteditcontroller.cpp">
       <Filter>Source Files\vst3\public.sdk\vst</Filter>
     </ClCompile>
-    <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstguieditor.cpp">
-      <Filter>Source Files\vst3\public.sdk\vst</Filter>
-    </ClCompile>
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstinitiids.cpp">
       <Filter>Source Files\vst3\public.sdk\vst</Filter>
     </ClCompile>
@@ -102,25 +96,10 @@
     <ClCompile Include="..\vstsdk3\pluginterfaces\base\ustring.cpp">
       <Filter>Source Files\vst3\pluginterfaces\base</Filter>
     </ClCompile>
-    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.cpp">
-      <Filter>Source Files\vstgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_uidescription_win32.cpp">
-      <Filter>Source Files\vstgui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\vstsdk3\vstgui4\vstgui\vstgui_win32.cpp">
-      <Filter>Source Files\vstgui</Filter>
-    </ClCompile>
-    <ClCompile Include="resonance_filter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bandlimited_sawtooth_oscillator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bandlimited_sawtooth_oscillator_note_vst3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BLITSaw_controller.cpp">
@@ -236,12 +215,6 @@
     <ClInclude Include="bandlimited_sawtooth_oscillator_note.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="bandlimited_sawtooth_oscillator_note_vst3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="resonance_filter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BLITSaw_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -254,9 +227,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BLITSaw.def" />
-    <None Include="BLITSaw.uidesc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="BLITSaw.rc" />
   </ItemGroup>
 </Project>

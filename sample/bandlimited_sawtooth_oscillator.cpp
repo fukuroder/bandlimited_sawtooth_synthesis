@@ -3,27 +3,29 @@
 #include "bandlimited_sawtooth_oscillator.h"
 #include "bandlimited_sawtooth_oscillator_note.h"
 
-//----------------
-// コンストラクタ
-//----------------
+#ifdef _DEBUG
+#include <windows.h>
+#endif
+
+namespace Steinberg { namespace Vst {
+
+// constructor
 bandlimited_sawtooth_oscillator::bandlimited_sawtooth_oscillator()
 {
-	// サイン波テーブル作成
-	int ii = 0;
-	for(; ii< _sinTable.size()-1; ii++)
+	// sine wave table
+	for(size_t ii = 0; ii< _sinTable.size()-1; ii++)
 	{
 		_sinTable[ii] = sin( 2.0*M_PI * ii/(_sinTable.size()-1));
 	}
+	_sinTable.back() = 0.0;
 
-	_sinTable[ii] = 0.0;
-
-	_srate = 44100;
+	_Leak = 0.995;
 }
 
 //
-void bandlimited_sawtooth_oscillator::setFeedback(double value)
+void bandlimited_sawtooth_oscillator::setLeak(double value)
 {
-	_feedback = value;
+	_Leak = value;
 }
 
 //-------------
@@ -32,16 +34,15 @@ void bandlimited_sawtooth_oscillator::setFeedback(double value)
 double bandlimited_sawtooth_oscillator::LinearInterpolatedSin( double x )
 {
 #ifdef _DEBUG
-	if( x < 0.0 ) throw;
-	if( 1.0 <= x ) throw;
+	if( x < 0.0 || 1.0 < x)
+	{
+		::OutputDebugString(L"x:range error");
+		return 0.0;
+	}
 #endif
 
 	// スケーリング
 	double pos = (_sinTable.size()-1) * x;
-
-#ifdef _DEBUG
-	if( pos >= _sinTable.size()-1 ) throw;
-#endif
 
 	// 位置を計算
 	unsigned int idx_A = static_cast<int>(pos);
@@ -63,6 +64,9 @@ double bandlimited_sawtooth_oscillator::BLIT( double t, int N )
 
 	if( x_denominator < 1.0e-12 )// TODO: 要チューニング
 	{
+#ifdef _DEBUG
+		::OutputDebugString(L"ロピタルの定理を適用");
+#endif
 		// ゼロ割防止。ロピタルの定理を適用
 		return 2.0*(2*N+1);
 	}
@@ -81,73 +85,7 @@ void bandlimited_sawtooth_oscillator::updateOscillater(bandlimited_sawtooth_osci
 	note.t += note.dt;
 	if ( 1.0 <= note.t )note.t -= 1.0;
 
-	note.saw = note.saw*_feedback + (BLIT(note.t, note.n)-2.0)*note.dt;
+	note.saw = note.saw*_Leak + (BLIT(note.t, note.n)-2.0)*note.dt;
 }
 
-//
-void bandlimited_sawtooth_oscillator::updateEnvelope(bandlimited_sawtooth_oscillator_note &note)
-{
-	if( note.adsr == bandlimited_sawtooth_oscillator_note::Attack )
-	{
-		// Attack
-		if( note.envelope + _attack_decrement < 1.0 )
-		{
-			note.envelope += _attack_decrement;
-		}
-		else
-		{
-			// Attack→定数
-			note.envelope = 1.0;
-			note.adsr = bandlimited_sawtooth_oscillator_note::Const;
-		}
-	}
-	else if( note.adsr == bandlimited_sawtooth_oscillator_note::Release )
-	{
-		// Release
-		if( 0.0 < note.envelope - _release_decrement )
-		{
-			note.envelope -= _release_decrement;
-		}
-		else
-		{
-			// リリース終了
-			note.envelope = 0.0;
-			note.adsr = bandlimited_sawtooth_oscillator_note::Silent;
-
-			// 破棄
-			note.kill();
-		}
-	}
-}
-
-//
-void bandlimited_sawtooth_oscillator::setAttackTime(double attackTime)
-{
-	if( attackTime > 1.0e-12)
-	{
-		_attack_decrement = 1.0 / (attackTime * _srate);
-	}
-	else
-	{
-		_attack_decrement = 1.0;
-	}
-}
-
-//
-void bandlimited_sawtooth_oscillator::setReleaseTime(double releaseTime)
-{
-	if( releaseTime > 1.0e-12)
-	{
-		_release_decrement = 1.0 / (releaseTime * _srate);
-	}
-	else
-	{
-		_release_decrement = 1.0;
-	}
-}
-
-//
-void bandlimited_sawtooth_oscillator::setSampleRate(int srate)
-{
-	_srate = srate;
-}
+}}

@@ -32,7 +32,7 @@ tresult PLUGIN_API BLITSaw_processor::initialize(FUnknown* context)
 	}
 
 	// set bus
-	addAudioOutput(STR16("Stereo Out"), SpeakerArr::kMono);
+	addAudioOutput(STR16("Stereo Out"), SpeakerArr::kStereo);
 	addEventInput (STR16 ("Event Input"), 1);
 
 	return kResultOk;
@@ -45,7 +45,7 @@ tresult PLUGIN_API BLITSaw_processor::setBusArrangements(
 	SpeakerArrangement* outputs,
 	int32 numOuts
 ){
-	if (numIns == 0 && numOuts == 1 && outputs[0] == SpeakerArr::kMono)
+	if (numIns == 0 && numOuts == 1 && outputs[0] == SpeakerArr::kStereo)
 	{
 		return AudioEffect::setBusArrangements(inputs, numIns, outputs, numOuts);
 	}
@@ -56,19 +56,15 @@ tresult PLUGIN_API BLITSaw_processor::setProcessing (TBool state)
 {
 	if( state == 1)
 	{
+		//------
 		// setup
+		//------
 
 		for(auto note = _notes.begin(); note != _notes.end(); ++note)
 		{
 			// set sample rate
 			note->setSampleRate( processSetup.sampleRate );
 		}
-
-		// set sample rate
-		_filter.setSampleRate( processSetup.sampleRate );
-
-		// set sample rate
-		blit.setSampleRate( processSetup.sampleRate );
 	}
 
 	return kResultOk;
@@ -94,61 +90,11 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 				if(paramQueue->getPoint(paramQueue->getPointCount() - 1, offsetSamples, value) == kResultTrue)
 				{
 					ParamID id = paramQueue->getParameterId();
-					if( id == feedback )
+					if( id == Leak )
 					{
 						// -> [0.99, 1.0]
 						double feedback = 0.99 + 0.01 * value;  
-						blit.setFeedback(feedback);
-					}
-					else if( id == coarse )
-					{
-						double coarse_pitch = static_cast<int>( 48 * value + 0.5 ) - 24;
-
-						for(auto note = _notes.begin(); note != _notes.end(); ++note)
-						{
-							note->setCorasePitch( coarse_pitch );
-						}
-					}
-					else if( id == fine )
-					{
-						double finepitch = static_cast<int>( 200 * value + 0.5 ) - 100;
-						for(auto note = _notes.begin(); note != _notes.end(); ++note)
-						{
-							note->setFinePitch( finepitch );
-						}
-					}
-					else if( id == attack )
-					{
-						double attack_time = value * 0.2; // [0, 0.2]
-						blit.setAttackTime( attack_time );
-					}
-					else if( id == release )
-					{
-						double release_time = value * 0.2; // [0, 0.2]
-						blit.setReleaseTime( release_time );
-					}
-					else if( id == cutoff )
-					{
-						double cutoff_freq = 200.0 * pow(20.0, (double)value); // [200, 4000]
-						_filter.setCutoff( cutoff_freq );
-		
-					}
-					else if( id == resonance )
-					{
-						double q = 0.70710678118654757274 * (1.0 - value) + 20.0*value;
-						_filter.setResonance( q );
-					}
-					else if( id == high )
-					{
-						_filter.setHigh( value );
-					}
-					else if( id == band )
-					{
-						_filter.setBand( value );
-					}
-					else if( id == low )
-					{
-						_filter.setLow( value );
+						blit.setLeak(feedback);
 					}
 				}
 			}
@@ -170,44 +116,25 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 
 			if( e.type == Event::kNoteOnEvent )
 			{
-				int16 note_no = e.noteOff.pitch;
-				auto target_note = std::find_if(
+				// 利用可能なノートを検索する
+				auto available_note = std::find_if(
 					_notes.begin(),
 					_notes.end(), 
-					[note_no](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.id() == note_no;});
+					[](const bandlimited_sawtooth_oscillator_note& n){return n.adsr() == bandlimited_sawtooth_oscillator_note::Off;}); 
 
-				if( target_note != _notes.end() )
+				if( available_note != _notes.end() )
 				{
-					// 再度ノートON
-					target_note->trigger(e.noteOn);
-				}
-				else
-				{
-					// 利用可能なノートを検索する
-					auto available_note = std::find_if(
-						_notes.begin(),
-						_notes.end(), 
-						[](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.adsr == bandlimited_sawtooth_oscillator_note::Silent;}); 
-
-					if( available_note != _notes.end() )
-					{
-						// ノートON
-						available_note->trigger( e.noteOn );
-					}
+					// ノートON
+					available_note->trigger( e.noteOn );
 				}
 			}
 			else if( e.type == Event::kNoteOffEvent )
 			{
-				//int32 note_id = e.noteOff.noteId;
-				//auto target_note = std::find_if(
-				//	_notes.begin(),
-				//	_notes.end(), 
-				//	[note_id](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.id() == note_id;});
-				int16 note_no = e.noteOff.pitch;
+				int32 note_id = e.noteOff.noteId;
 				auto target_note = std::find_if(
 					_notes.begin(),
 					_notes.end(), 
-					[note_no](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.id() == note_no;});
+					[note_id](const bandlimited_sawtooth_oscillator_note& n){return n.id() == note_id;});
 
 				if( target_note != _notes.end() )
 				{
@@ -215,60 +142,25 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 					target_note->release();
 				}
 			}
-			else if( e.type == Event::kDataEvent )
-			{
-				//-------
-				// event
-				//-------
-
-				unsigned char status = e.data.bytes[0] & 0xf0;	// ignoring channel
-
-				if( status == 0xE0 )
-				{
-					//-----------------
-					// pitch bend event
-					//-----------------
-
-					unsigned char data1 = e.data.bytes[1] & 0x7f;
-					unsigned char data2 = e.data.bytes[2] & 0x7f;
-
-					double pitch_bend = (( data1 + data2*128 ) - 8192 ) / 8192.0;
-
-					for(auto note = _notes.begin(); note != _notes.end(); ++note)
-					{
-						note->setPitchBend( pitch_bend );
-					}
-				}
-			}
-
-
 		}
 	}
 
 	bool bAllSilent= std::all_of(
 		_notes.begin(),
 		_notes.end(),
-		[](const bandlimited_sawtooth_oscillator_note_vst3& n){return n.adsr == bandlimited_sawtooth_oscillator_note::Silent;});
+		[](const bandlimited_sawtooth_oscillator_note& n){return n.adsr() == bandlimited_sawtooth_oscillator_note::Off;});
 
 	if( bAllSilent )
 	{
 		return kResultOk;
 	}
-
-	_filter.updateFilter();
 	
 	/*--------*/
 	/*音声処理*/
 	/*--------*/
 	if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 1 )
 	{
-		for(auto note = _notes.begin(); note != _notes.end(); ++note)
-		{
-			// ピッチを更新
-			note->updateFrequency();
-		}
-		
-		float* out = data.outputs[0].channelBuffers32[0];
+		float** out = data.outputs[0].channelBuffers32;
 	
 		const int32 sampleFrames = data.numSamples;
 		for( int ii = 0; ii < sampleFrames; ii++ )
@@ -276,25 +168,17 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 			double value = 0.0;
 			for(auto note = _notes.begin(); note != _notes.end(); ++note)
 			{	
-				if( note->adsr == bandlimited_sawtooth_oscillator_note::Silent )continue;
-	
+				if( note->adsr() == bandlimited_sawtooth_oscillator_note::Off )continue;
+
 				// add
-				value += note->saw * note->envelope * note->velocity();
+				value += note->saw * note->velocity();
 			
 				// update oscillater
 				blit.updateOscillater( *note );
-	
-				// update envelope
-				blit.updateEnvelope( *note );
 			}
-	
-			// filtering
-	
-	
-			double filterd_value = _filter.process(value);
-	
+
 			// set output buffer
-			out[ii] = static_cast<float>( filterd_value );
+			out[0][ii] = out[1][ii] = static_cast<float>( value );
 		}
 	}
 	return kResultOk;

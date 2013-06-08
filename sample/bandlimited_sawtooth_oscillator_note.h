@@ -1,51 +1,42 @@
 ﻿#pragma once
+#include "bandlimited_sawtooth_oscillator_note.h"
+#include "pluginterfaces/vst/ivstevents.h"
+
+namespace Steinberg {namespace Vst {
 
 /// BLITノコギリ波ノート基底クラス.
 class bandlimited_sawtooth_oscillator_note
 {
 public:
-
-	/// ADSR.
-	enum ADSR
-	{
-		Silent,	///< 無音
-		Attack,	///< アタック
-		Const,	///< 一定
-		Release ///< リリース
-	};
-
 	/// コンストラクタ.
 	bandlimited_sawtooth_oscillator_note();
 
-	/// ノートオン.
-	void trigger(double pitch);
+	// ノートオン
+	void trigger(const NoteOnEvent& noteOn);
+
+	// タグ取得.
+	int32 id()const;
+
+	/// ベロシティ取得.
+	double velocity()const;
+
+	// ADSR.
+	enum ADSR
+	{
+		// 
+		Off,
+
+		//
+		On,
+	};
 
 	//
 	void setSampleRate(int srate);
 
-	/// 周波数更新.
-	void updateFrequency(double pitch);
-
-	//
-	void setFinePitch(double finePitch);
-
-	//
-	void setCorasePitch(double CorasePitch);
-
 	/// ノートリリース.
 	void release();
 
-	/// ノート破棄.
-	virtual void kill() = 0;
 
-	/// ベロシティ取得.
-	virtual double velocity() = 0;
-
-	/// ADSR.
-	ADSR	adsr;
-
-	/// エンベロープ.
-	double	envelope;
 
 	/// 現在の時間.
 	double	t;
@@ -61,4 +52,23 @@ public:
 
 	//
 	int srate;
+
+	ADSR adsr()const{return _adsr;};
+
+protected:
+
+	/// ADSR.
+	ADSR	_adsr;
+
+	NoteOnEvent _noteOn;
+
+	/// 周波数.
+	double _old_pitch_bend;
+
+	//
+	double _pitch_bend;
+
+	// 中央のノートナンバー
+	static const int _note_no_center = 69;
 };
+}}

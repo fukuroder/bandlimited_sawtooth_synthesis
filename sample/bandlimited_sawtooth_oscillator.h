@@ -3,6 +3,8 @@
 // include
 #include <array>
 
+namespace Steinberg {namespace Vst {
+
 // class
 class bandlimited_sawtooth_oscillator_note;
 
@@ -14,38 +16,18 @@ public:
 	bandlimited_sawtooth_oscillator();
 
 	//
-	void setFeedback(double value);
-
-	//
-	void updateEnvelope(bandlimited_sawtooth_oscillator_note &note);
+	void setLeak(double value);
 
 	//
 	void updateOscillater(bandlimited_sawtooth_oscillator_note& note);
 
-	//
-	void setAttackTime(double attackTime);
-
-	//
-	void setReleaseTime(double releaseTime);
-
-	//
-	void setSampleRate(int srate);
 
 protected:
 	//
 	std::array<double, (1<<13)+1> _sinTable;
 	
 	//
-	double _feedback;
-
-	//
-	double _attack_decrement;
-
-	//
-	double _release_decrement;
-
-	//
-	int _srate;
+	double _Leak;
 
 	//
 	double LinearInterpolatedSin( double iT );
@@ -53,3 +35,5 @@ protected:
 	//
 	double BLIT( double T, int N );
 };
+
+}}
