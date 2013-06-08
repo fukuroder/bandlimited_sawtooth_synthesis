@@ -61,12 +61,6 @@ protected:
 
 	NoteOnEvent _noteOn;
 
-	/// 周波数.
-	double _old_pitch_bend;
-
-	//
-	double _pitch_bend;
-
 	// 中央のノートナンバー
 	static const int _note_no_center = 69;
 };
