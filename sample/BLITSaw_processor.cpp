@@ -158,7 +158,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 	/*--------*/
 	/*音声処理*/
 	/*--------*/
-	if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 1 )
+	if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 2 )
 	{
 		float** out = data.outputs[0].channelBuffers32;
 	
