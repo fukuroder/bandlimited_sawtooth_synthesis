@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "bandlimited_sawtooth_oscillator_note.h"
 #include "pluginterfaces/vst/ivstevents.h"
 
 namespace Steinberg {namespace Vst {
