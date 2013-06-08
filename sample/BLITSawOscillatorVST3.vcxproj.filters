@@ -28,9 +28,6 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{bc0bf31d-4c1a-4caa-b856-1cde9d4b4484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\vstgui">
-      <UniqueIdentifier>{c6590b46-40ff-4817-9787-1e8d38bf41fb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\vst3">
       <UniqueIdentifier>{f6fa1c14-1e9e-4f62-aeba-fa0505d5bd82}</UniqueIdentifier>
     </Filter>
@@ -151,9 +148,6 @@
     </ClInclude>
     <ClInclude Include="..\vstsdk3\pluginterfaces\vst\vsttypes.h">
       <Filter>Header Files\vst3\pluginterfaces\vst</Filter>
-    </ClInclude>
-    <ClInclude Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.h">
-      <Filter>Header Files\vstgui</Filter>
     </ClInclude>
     <ClInclude Include="..\vstsdk3\pluginterfaces\base\falignpop.h">
       <Filter>Header Files\vst3\pluginterfaces\base</Filter>

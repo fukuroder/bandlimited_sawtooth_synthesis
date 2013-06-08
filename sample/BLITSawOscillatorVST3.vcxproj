@@ -261,7 +261,6 @@
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vsteditcontroller.h" />
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstguieditor.h" />
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstparameters.h" />
-    <ClInclude Include="..\vstsdk3\vstgui4\vstgui\plugin-bindings\vst3editor.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator.h" />
     <ClInclude Include="bandlimited_sawtooth_oscillator_note.h" />
     <ClInclude Include="BLITSaw_controller.h" />
