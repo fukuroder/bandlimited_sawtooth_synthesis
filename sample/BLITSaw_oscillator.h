@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 // include
 #include <array>
@@ -7,11 +7,11 @@
 namespace Steinberg {namespace Vst {
 
 //
-class bandlimited_sawtooth_oscillator_note
+class BLITSaw_oscillator_note
 {
 public:
 	//
-	bandlimited_sawtooth_oscillator_note();
+	BLITSaw_oscillator_note();
 
 	//
 	void trigger(const NoteOnEvent& noteOn);
@@ -67,22 +67,22 @@ protected:
 };
 
 //
-class bandlimited_sawtooth_oscillator
+class BLITSaw_oscillator
 {
 public:
 	// constructor
-	bandlimited_sawtooth_oscillator();
+	BLITSaw_oscillator();
 
 	//
 	void setLeak(double value);
 
 	//
-	void updateOscillater(bandlimited_sawtooth_oscillator_note& note);
+	void updateOscillater(BLITSaw_oscillator_note& note);
 
 
 protected:
 	//
-	std::array<double, (1<<13)+1> _sinTable;
+	std::array<double, (1<<10)+1> _sinTable;
 	
 	//
 	double _Leak;

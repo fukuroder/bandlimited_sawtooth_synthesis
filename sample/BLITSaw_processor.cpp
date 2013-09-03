@@ -1,8 +1,6 @@
 #include "BLITSaw_processor.h"
 #include "BLITSaw_guids.h"
-#include "pluginterfaces/base/ibstream.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
-#include "pluginterfaces/vst/ivstevents.h"
 #include <algorithm>
 
 namespace Steinberg { namespace Vst {
@@ -120,7 +118,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 				auto available_note = std::find_if(
 					_notes.begin(),
 					_notes.end(), 
-					[](const bandlimited_sawtooth_oscillator_note& n){return n.adsr() == bandlimited_sawtooth_oscillator_note::Off;}); 
+					[](const BLITSaw_oscillator_note& n){return n.adsr() == BLITSaw_oscillator_note::Off;}); 
 
 				if( available_note != _notes.end() )
 				{
@@ -134,7 +132,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 				auto target_note = std::find_if(
 					_notes.begin(),
 					_notes.end(), 
-					[note_id](const bandlimited_sawtooth_oscillator_note& n){return n.id() == note_id;});
+					[note_id](const BLITSaw_oscillator_note& n){return n.id() == note_id;});
 
 				if( target_note != _notes.end() )
 				{
@@ -148,7 +146,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 	bool bAllSilent= std::all_of(
 		_notes.begin(),
 		_notes.end(),
-		[](const bandlimited_sawtooth_oscillator_note& n){return n.adsr() == bandlimited_sawtooth_oscillator_note::Off;});
+		[](const BLITSaw_oscillator_note& n){return n.adsr() == BLITSaw_oscillator_note::Off;});
 
 	if( bAllSilent )
 	{
@@ -166,7 +164,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 			double value = 0.0;
 			for(auto note = _notes.begin(); note != _notes.end(); ++note)
 			{	
-				if( note->adsr() == bandlimited_sawtooth_oscillator_note::Off )continue;
+				if( note->adsr() == BLITSaw_oscillator_note::Off )continue;
 
 				// add
 				value += note->saw * note->velocity();

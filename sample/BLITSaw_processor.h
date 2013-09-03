@@ -21,8 +21,7 @@ public:
 		SpeakerArrangement* inputs,
 		int32 numIns,
 		SpeakerArrangement* outputs,
-		int32 numOuts
-		);
+		int32 numOuts);
 	virtual tresult PLUGIN_API setProcessing (TBool state);
 	virtual tresult PLUGIN_API process(ProcessData& data);
 
@@ -35,10 +34,10 @@ protected:
 	};
 
 	//
-	std::array<bandlimited_sawtooth_oscillator_note, 8> _notes;
+	std::array<BLITSaw_oscillator_note, 8> _notes;
 
 	//
-	bandlimited_sawtooth_oscillator blit;
+	BLITSaw_oscillator blit;
 };
 
 }} // namespace

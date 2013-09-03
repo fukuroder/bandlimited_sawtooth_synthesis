@@ -1,6 +1,6 @@
 #include "BLITSaw_controller.h"
-#include "vstgui/plugin-bindings/vst3editor.h"
 #include "pluginterfaces/base/ibstream.h"
+#include <stdio.h>
 
 namespace Steinberg { namespace Vst {
 

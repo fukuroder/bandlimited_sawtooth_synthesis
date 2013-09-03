@@ -5,7 +5,7 @@
 namespace Steinberg { namespace Vst {
 
 // constructor
-bandlimited_sawtooth_oscillator_note::bandlimited_sawtooth_oscillator_note()
+BLITSaw_oscillator_note::BLITSaw_oscillator_note()
 :_adsr(Off)
 ,t(0.0)
 ,saw(0.0)
@@ -16,13 +16,13 @@ bandlimited_sawtooth_oscillator_note::bandlimited_sawtooth_oscillator_note()
 }
 
 //
-void bandlimited_sawtooth_oscillator_note::setSampleRate(int srate)
+void BLITSaw_oscillator_note::setSampleRate(int srate)
 {
 	this->srate = srate;
 }
 
 //
-void bandlimited_sawtooth_oscillator_note::release()
+void BLITSaw_oscillator_note::release()
 {
 	_adsr = Off;
 }
@@ -30,7 +30,7 @@ void bandlimited_sawtooth_oscillator_note::release()
 //---------
 //
 //---------
-void bandlimited_sawtooth_oscillator_note::trigger(const NoteOnEvent& noteOn)
+void BLITSaw_oscillator_note::trigger(const NoteOnEvent& noteOn)
 {
 	_noteOn = noteOn; // copy
 	_adsr = On;
@@ -42,20 +42,20 @@ void bandlimited_sawtooth_oscillator_note::trigger(const NoteOnEvent& noteOn)
 }
 
 //
-int32 bandlimited_sawtooth_oscillator_note::id()const
+int32 BLITSaw_oscillator_note::id()const
 {
 	return _noteOn.noteId;
 }
 
 //
-double bandlimited_sawtooth_oscillator_note::velocity()const
+double BLITSaw_oscillator_note::velocity()const
 {
 	return _noteOn.velocity;
 }
 
 
 // constructor
-bandlimited_sawtooth_oscillator::bandlimited_sawtooth_oscillator()
+BLITSaw_oscillator::BLITSaw_oscillator()
 {
 	// sine wave table
 	for(size_t ii = 0; ii< _sinTable.size()-1; ii++)
@@ -68,13 +68,13 @@ bandlimited_sawtooth_oscillator::bandlimited_sawtooth_oscillator()
 }
 
 //
-void bandlimited_sawtooth_oscillator::setLeak(double value)
+void BLITSaw_oscillator::setLeak(double value)
 {
 	_Leak = value;
 }
 
 //
-double bandlimited_sawtooth_oscillator::LinearInterpolatedSin( double x )
+double BLITSaw_oscillator::LinearInterpolatedSin( double x )
 {
 	//
 	double pos = (_sinTable.size()-1) * x;
@@ -90,7 +90,7 @@ double bandlimited_sawtooth_oscillator::LinearInterpolatedSin( double x )
 }
 
 //
-double bandlimited_sawtooth_oscillator::BLIT( double t, int N )
+double BLITSaw_oscillator::BLIT( double t, int N )
 {
 	//
 	double x_denominator = LinearInterpolatedSin( 0.5*t );
@@ -106,7 +106,7 @@ double bandlimited_sawtooth_oscillator::BLIT( double t, int N )
 }
 
 //
-void bandlimited_sawtooth_oscillator::updateOscillater(bandlimited_sawtooth_oscillator_note& note)
+void BLITSaw_oscillator::updateOscillater(BLITSaw_oscillator_note& note)
 {
 	note.t += note.dt;
 	if ( 1.0 <= note.t )note.t -= 1.0;
