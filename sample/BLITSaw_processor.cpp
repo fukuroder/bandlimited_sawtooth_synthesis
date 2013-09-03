@@ -86,7 +86,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 			{
 				int32 offsetSamples;
 				double value;
-				// 末尾の値を取得
+				// 
 				if(paramQueue->getPoint(paramQueue->getPointCount() - 1, offsetSamples, value) == kResultTrue)
 				{
 					ParamID id = paramQueue->getParameterId();
@@ -116,7 +116,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 
 			if( e.type == Event::kNoteOnEvent )
 			{
-				// 利用可能なノートを検索する
+				// 
 				auto available_note = std::find_if(
 					_notes.begin(),
 					_notes.end(), 
@@ -124,7 +124,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 
 				if( available_note != _notes.end() )
 				{
-					// ノートON
+					// 
 					available_note->trigger( e.noteOn );
 				}
 			}
@@ -138,7 +138,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 
 				if( target_note != _notes.end() )
 				{
-					// ノートOFF
+					// 
 					target_note->release();
 				}
 			}
@@ -155,9 +155,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 		return kResultOk;
 	}
 	
-	/*--------*/
-	/*音声処理*/
-	/*--------*/
+	//
 	if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 2 )
 	{
 		float** out = data.outputs[0].channelBuffers32;

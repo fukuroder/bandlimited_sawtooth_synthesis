@@ -28,7 +28,7 @@ public:
 
 protected:
 
-	// パラメータID.
+	//
 	enum
 	{
 		Leak,
