@@ -1,4 +1,4 @@
-﻿#include "BLITSaw_processor.h"
+#include "BLITSaw_processor.h"
 #include "BLITSaw_guids.h"
 #include "pluginterfaces/base/ibstream.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"

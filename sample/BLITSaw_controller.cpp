@@ -1,4 +1,4 @@
-﻿#include "BLITSaw_controller.h"
+#include "BLITSaw_controller.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
 #include "pluginterfaces/base/ibstream.h"
 

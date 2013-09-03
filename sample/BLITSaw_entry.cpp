@@ -1,4 +1,4 @@
-﻿#include "BLITSaw_processor.h"
+#include "BLITSaw_processor.h"
 #include "BLITSaw_controller.h"
 #include "BLITSaw_guids.h"
 #include "public.sdk/source/main//pluginfactoryvst3.h"

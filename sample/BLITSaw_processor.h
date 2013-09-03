@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "public.sdk/source/vst/vstaudioeffect.h"
 #include "BLITSaw_oscillator.h"
 #include <array>
