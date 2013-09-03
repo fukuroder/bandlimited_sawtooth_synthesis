@@ -93,12 +93,6 @@
     <ClCompile Include="..\vstsdk3\pluginterfaces\base\ustring.cpp">
       <Filter>Source Files\vst3\pluginterfaces\base</Filter>
     </ClCompile>
-    <ClCompile Include="bandlimited_sawtooth_oscillator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BLITSaw_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -106,6 +100,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BLITSaw_processor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BLITSaw_oscillator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -203,12 +200,6 @@
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstparameters.h">
       <Filter>Header Files\vst3\public.sdk\vst</Filter>
     </ClInclude>
-    <ClInclude Include="bandlimited_sawtooth_oscillator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="bandlimited_sawtooth_oscillator_note.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BLITSaw_controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -216,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BLITSaw_processor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BLITSaw_oscillator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

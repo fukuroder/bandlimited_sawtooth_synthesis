@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "public.sdk/source/vst/vstaudioeffect.h"
-#include "bandlimited_sawtooth_oscillator_note.h"
-#include "bandlimited_sawtooth_oscillator.h"
+#include "BLITSaw_oscillator.h"
 #include <array>
 
 namespace Steinberg { namespace Vst {

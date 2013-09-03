@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>BLITSawOscillatorVST3</ProjectName>
+    <ProjectName>BLITSaw</ProjectName>
     <ProjectGuid>{CED7AFB2-D3A8-4135-89FC-FD63E1E5B92F}</ProjectGuid>
     <RootNamespace>AGain</RootNamespace>
     <Keyword>Win32Proj</Keyword>
@@ -225,8 +225,7 @@
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vsteditcontroller.cpp" />
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstinitiids.cpp" />
     <ClCompile Include="..\vstsdk3\public.sdk\source\vst\vstparameters.cpp" />
-    <ClCompile Include="bandlimited_sawtooth_oscillator.cpp" />
-    <ClCompile Include="bandlimited_sawtooth_oscillator_note.cpp" />
+    <ClCompile Include="BLITSaw_oscillator.cpp" />
     <ClCompile Include="BLITSaw_controller.cpp" />
     <ClCompile Include="BLITSaw_entry.cpp" />
     <ClCompile Include="BLITSaw_processor.cpp" />
@@ -263,10 +262,9 @@
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vsteditcontroller.h" />
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstguieditor.h" />
     <ClInclude Include="..\vstsdk3\public.sdk\source\vst\vstparameters.h" />
-    <ClInclude Include="bandlimited_sawtooth_oscillator.h" />
-    <ClInclude Include="bandlimited_sawtooth_oscillator_note.h" />
     <ClInclude Include="BLITSaw_controller.h" />
     <ClInclude Include="BLITSaw_guids.h" />
+    <ClInclude Include="BLITSaw_oscillator.h" />
     <ClInclude Include="BLITSaw_processor.h" />
   </ItemGroup>
   <ItemGroup>
