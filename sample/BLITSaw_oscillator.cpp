@@ -39,6 +39,7 @@ void BLITSaw_oscillator_note::trigger(const NoteOnEvent& noteOn)
 	double freq = 440.0*( ::pow(2.0, (_noteOn.pitch - _note_no_center)/12.0 ));
 	n = static_cast<int>(srate / 2.0 / freq);
 	dt = freq / srate;
+	t = 0.5;
 }
 
 //
