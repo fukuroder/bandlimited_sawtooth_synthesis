@@ -3,7 +3,7 @@
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 #include <algorithm>
 
-namespace Steinberg { namespace Vst {
+namespace MyVst {
 
 //-------------------------------------------------------------------------
 // BLITSaw_processor Implementation
@@ -180,4 +180,4 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 	return kResultOk;
 }
 
-}} // namespace
+} // namespace

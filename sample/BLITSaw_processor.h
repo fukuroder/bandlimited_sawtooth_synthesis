@@ -3,7 +3,9 @@
 #include "BLITSaw_oscillator.h"
 #include <array>
 
-namespace Steinberg { namespace Vst {
+using namespace Steinberg;
+using namespace Steinberg::Vst;
+namespace MyVst {
 
 //
 class BLITSaw_processor : public AudioEffect
@@ -40,4 +42,4 @@ protected:
 	BLITSaw_oscillator blit;
 };
 
-}} // namespace
+} // namespace

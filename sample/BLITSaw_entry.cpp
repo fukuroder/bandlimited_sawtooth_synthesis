@@ -17,7 +17,7 @@ bool DeinitModule()
 	return true;
 }
 
-namespace Steinberg{ namespace Vst{
+namespace MyVst{
 // define factory
 BEGIN_FACTORY_DEF(
 	"fukuroda",							// vendor
@@ -52,4 +52,4 @@ DEF_CLASS2(
 )
 
 END_FACTORY
-}} // namespace
+} // namespace

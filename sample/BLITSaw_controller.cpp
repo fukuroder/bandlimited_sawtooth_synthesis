@@ -2,7 +2,7 @@
 #include "pluginterfaces/base/ibstream.h"
 #include <stdio.h>
 
-namespace Steinberg { namespace Vst {
+namespace MyVst {
 
 //
 BLITSaw_controller::BLITSaw_controller()
@@ -40,4 +40,4 @@ void BLITSaw_LeakParameter::toString(ParamValue normValue, String128 string)cons
 	::swprintf_s(string, 128, L"%.3f",( 0.99 + 0.01 * normValue ) * 100);
 }
 
-}} // namespace
+} // namespace

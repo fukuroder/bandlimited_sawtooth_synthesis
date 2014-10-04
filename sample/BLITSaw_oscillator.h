@@ -4,7 +4,9 @@
 #include <array>
 #include "pluginterfaces/vst/ivstevents.h"
 
-namespace Steinberg {namespace Vst {
+using namespace Steinberg;
+using namespace Steinberg::Vst;
+namespace MyVst {
 
 //
 class BLITSaw_oscillator_note
@@ -94,4 +96,4 @@ protected:
 	double BLIT( double T, int N );
 };
 
-}} //  namespace
+} //  namespace

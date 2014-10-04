@@ -1,7 +1,9 @@
 #pragma once
 #include "public.sdk/source/vst/vsteditcontroller.h"
 
-namespace Steinberg {namespace Vst {
+using namespace Steinberg;
+using namespace Steinberg::Vst;
+namespace MyVst {
 
 // controller
 class BLITSaw_controller : public EditController
@@ -25,4 +27,4 @@ public:
 	virtual void toString(ParamValue normValue, String128 string)const;
 };
 
-}} // namespace
+} // namespace

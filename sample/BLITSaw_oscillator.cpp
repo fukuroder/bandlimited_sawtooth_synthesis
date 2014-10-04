@@ -2,7 +2,7 @@
 #include <math.h>
 #include "BLITSaw_oscillator.h"
 
-namespace Steinberg { namespace Vst {
+namespace MyVst {
 
 // constructor
 BLITSaw_oscillator_note::BLITSaw_oscillator_note()
@@ -115,4 +115,4 @@ void BLITSaw_oscillator::updateOscillater(BLITSaw_oscillator_note& note)
 	note.saw = note.saw*_Leak + (BLIT(note.t, note.n)-2.0)*note.dt;
 }
 
-}}
+} // namespace
