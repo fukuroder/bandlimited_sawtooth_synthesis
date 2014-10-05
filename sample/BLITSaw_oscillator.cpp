@@ -11,14 +11,7 @@ BLITSaw_oscillator_note::BLITSaw_oscillator_note()
 ,saw(0.0)
 ,n(0)
 ,dt(0.0)
-,srate(44100)
 {
-}
-
-//
-void BLITSaw_oscillator_note::setSampleRate(int srate)
-{
-	this->srate = srate;
 }
 
 //
@@ -27,19 +20,18 @@ void BLITSaw_oscillator_note::release()
 	_adsr = Off;
 }
 
-//---------
 //
-//---------
-void BLITSaw_oscillator_note::trigger(const NoteOnEvent& noteOn)
+void BLITSaw_oscillator_note::trigger(const NoteOnEvent& noteOn, double srate)
 {
 	_noteOn = noteOn; // copy
 	_adsr = On;
+	saw = 0.0;
+	t = 0.5;
 
 	//
 	double freq = 440.0*( ::pow(2.0, (_noteOn.pitch - _note_no_center)/12.0 ));
 	n = static_cast<int>(srate / 2.0 / freq);
 	dt = freq / srate;
-	t = 0.5;
 }
 
 //
@@ -53,7 +45,6 @@ double BLITSaw_oscillator_note::velocity()const
 {
 	return _noteOn.velocity;
 }
-
 
 // constructor
 BLITSaw_oscillator::BLITSaw_oscillator()

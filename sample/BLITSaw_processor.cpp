@@ -49,24 +49,6 @@ tresult PLUGIN_API BLITSaw_processor::setBusArrangements(
 	return kResultFalse;
 }
 
-tresult PLUGIN_API BLITSaw_processor::setProcessing (TBool state)
-{
-	if( state == 1)
-	{
-		//------
-		// setup
-		//------
-
-		for(auto note = _notes.begin(); note != _notes.end(); ++note)
-		{
-			// set sample rate
-			note->setSampleRate( processSetup.sampleRate );
-		}
-	}
-
-	return kResultOk;
-}
-
 //-------------------------------------------------------------------------
 tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 {
@@ -122,7 +104,7 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 				if( available_note != _notes.end() )
 				{
 					// 
-					available_note->trigger( e.noteOn );
+					available_note->trigger(e.noteOn, processSetup.sampleRate);
 				}
 			}
 			else if( e.type == Event::kNoteOffEvent )
@@ -153,27 +135,27 @@ tresult PLUGIN_API BLITSaw_processor::process(ProcessData& data)
 	}
 	
 	//
-	if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 2 )
+	if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 2)
 	{
-		float** out = data.outputs[0].channelBuffers32;
-	
+		Sample32** out = data.outputs[0].channelBuffers32;
+
 		const int32 sampleFrames = data.numSamples;
-		for( int ii = 0; ii < sampleFrames; ii++ )
+		for (int ii = 0; ii < sampleFrames; ii++)
 		{
 			double value = 0.0;
-			for(auto note = _notes.begin(); note != _notes.end(); ++note)
-			{	
-				if( note->adsr() == BLITSaw_oscillator_note::Off )continue;
+			for (auto& note : _notes)
+			{
+				if (note.adsr() == BLITSaw_oscillator_note::Off)continue;
 
 				// add
-				value += note->saw * note->velocity();
-			
+				value += note.saw * note.velocity();
+
 				// update oscillater
-				blit.updateOscillater( *note );
+				blit.updateOscillater(note);
 			}
 
 			// set output buffer
-			out[0][ii] = out[1][ii] = static_cast<float>( value );
+			out[0][ii] = out[1][ii] = static_cast<Sample32>(value);
 		}
 	}
 	return kResultOk;

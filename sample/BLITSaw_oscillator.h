@@ -16,7 +16,7 @@ public:
 	BLITSaw_oscillator_note();
 
 	//
-	void trigger(const NoteOnEvent& noteOn);
+	void trigger(const NoteOnEvent& noteOn, double srate);
 
 	//
 	int32 id()const;
@@ -35,11 +35,7 @@ public:
 	};
 
 	//
-	void setSampleRate(int srate);
-
-	//
 	void release();
-
 
 	//
 	double	t;
@@ -54,8 +50,6 @@ public:
 	double	dt;
 
 	//
-	int srate;
-
 	ADSR adsr()const{return _adsr;};
 
 protected:
@@ -63,8 +57,10 @@ protected:
 	// ADSR
 	ADSR	_adsr;
 
+	//
 	NoteOnEvent _noteOn;
 
+	//
 	static const int _note_no_center = 69;
 };
 
@@ -80,7 +76,6 @@ public:
 
 	//
 	void updateOscillater(BLITSaw_oscillator_note& note);
-
 
 protected:
 	//
