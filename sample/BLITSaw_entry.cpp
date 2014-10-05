@@ -18,38 +18,35 @@ bool DeinitModule()
 }
 
 namespace MyVst{
-// define factory
-BEGIN_FACTORY_DEF(
-	"fukuroda",							// vendor
-	"https://github.com/fukuroder",		// url
-	"mailto:fukuroder@live.jp"			// e-mail
-)
+	// define factory
+	BEGIN_FACTORY_DEF(
+		"fukuroda",							// vendor
+		"https://github.com/fukuroder",		// url
+		"mailto:fukuroder@live.jp")			// e-mail
 
-// register processor
-DEF_CLASS2(
-	INLINE_UID_FROM_FUID(BLITSawProcessorID),	// processor's GUID
-	PClassInfo::kManyInstances,					// ?
-	kVstAudioEffectClass,						// category
-	"BLITSaw",									// plug-in name
-	kDistributable,								// Component flag
-	PlugType::kInstrumentSynth,					// sub category
-	"1.0.0.000",								// plug-in version
-	kVstVersionString,							// VSTSDK version
-	BLITSaw_processor::create					// create method
-)
+		// register processor
+		DEF_CLASS2(
+		INLINE_UID_FROM_FUID(BLITSawProcessorID),	// processor's GUID
+		PClassInfo::kManyInstances,					// ?
+		kVstAudioEffectClass,						// category
+		"BLITSaw",									// plug-in name
+		kDistributable,								// Component flag
+		PlugType::kInstrumentSynth,					// sub category
+		"1.0.0.000",								// plug-in version
+		kVstVersionString,							// VSTSDK version
+		BLITSaw_processor::create)					// create method
 
-// register controller
-DEF_CLASS2(
-	INLINE_UID_FROM_FUID(BLITSawControllerID),	// controller's GUID
-	PClassInfo::kManyInstances,					// ?
-	kVstComponentControllerClass,				// category
-	"BLITSaw Controller",						// plug-in name
-	0,											// N/A
-	"",											// N/A
-	"1.0.0.000",								// plug-in version
-	kVstVersionString,							// create method
-	BLITSaw_controller::create					// create method
-)
+		// register controller
+		DEF_CLASS2(
+		INLINE_UID_FROM_FUID(BLITSawControllerID),	// controller's GUID
+		PClassInfo::kManyInstances,					// ?
+		kVstComponentControllerClass,				// category
+		"BLITSaw Controller",						// plug-in name
+		0,											// N/A
+		"",											// N/A
+		"1.0.0.000",								// plug-in version
+		kVstVersionString,							// create method
+		BLITSaw_controller::create)					// create method
 
-END_FACTORY
+	END_FACTORY
 } // namespace
