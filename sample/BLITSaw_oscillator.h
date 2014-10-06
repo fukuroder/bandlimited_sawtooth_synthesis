@@ -9,22 +9,12 @@ namespace MyVst {
 	class BLITSaw_oscillator_note
 	{
 	public:
-		//
 		BLITSaw_oscillator_note();
-
-		//
-		void trigger(const NoteOnEvent& noteOn, double srate);
-
-		//
-		int32 id()const;
-
-		//
-		double velocity()const;
 
 		// ADSR
 		enum ADSR
 		{
-			// 
+			//
 			Off,
 
 			//
@@ -32,13 +22,13 @@ namespace MyVst {
 		};
 
 		//
-		void release();
+		ADSR envelope;
 
 		//
 		double t;
 
 		//
-		double saw;
+		double value;
 
 		//
 		int n;
@@ -47,14 +37,12 @@ namespace MyVst {
 		double dt;
 
 		//
-		ADSR adsr()const{ return _adsr; };
-
-	protected:
-		// ADSR
-		ADSR _adsr;
+		int32 note_id;
 
 		//
-		NoteOnEvent _noteOn;
+		double velocity;
+
+	protected:
 
 		//
 		static const int _note_no_center = 69;
@@ -71,9 +59,28 @@ namespace MyVst {
 		void setLeak(double value);
 
 		//
-		void updateOscillater(BLITSaw_oscillator_note& note);
+		void trigger(const NoteOnEvent& noteOn, double srate);
+
+		//
+		void release(const NoteOffEvent& noteOff);
+
+		//
+		bool is_silent();
+
+		//
+		double render();
+
+		//
+		void next();
 
 	protected:
+
+		//
+		static const int _note_no_center = 69;
+
+		//
+		std::array<BLITSaw_oscillator_note, 8> _notes;
+
 		//
 		std::array<double, (1 << 10) + 1> _sinTable;
 
@@ -81,9 +88,9 @@ namespace MyVst {
 		double _Leak;
 
 		//
-		double LinearInterpolatedSin(double iT);
+		double LinearInterpolatedSin(double x);
 
 		//
-		double BLIT(double T, int N);
+		double BLIT(double t, int n);
 	};
 } //  namespace

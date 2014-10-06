@@ -92,41 +92,16 @@ namespace MyVst {
 
 				if (e.type == Event::kNoteOnEvent)
 				{
-					// 
-					auto available_note = std::find_if(
-						_notes.begin(),
-						_notes.end(),
-						[](const BLITSaw_oscillator_note& n){return n.adsr() == BLITSaw_oscillator_note::Off; });
-
-					if (available_note != _notes.end())
-					{
-						// 
-						available_note->trigger(e.noteOn, processSetup.sampleRate);
-					}
+					blit.trigger(e.noteOn, processSetup.sampleRate);
 				}
 				else if (e.type == Event::kNoteOffEvent)
 				{
-					int32 note_id = e.noteOff.noteId;
-					auto target_note = std::find_if(
-						_notes.begin(),
-						_notes.end(),
-						[note_id](const BLITSaw_oscillator_note& n){return n.id() == note_id; });
-
-					if (target_note != _notes.end())
-					{
-						// 
-						target_note->release();
-					}
+					blit.release(e.noteOff);
 				}
 			}
 		}
 
-		bool bAllSilent = std::all_of(
-			_notes.begin(),
-			_notes.end(),
-			[](const BLITSaw_oscillator_note& n){return n.adsr() == BLITSaw_oscillator_note::Off; });
-
-		if (bAllSilent)
+		if (blit.is_silent())
 		{
 			return kResultOk;
 		}
@@ -135,24 +110,11 @@ namespace MyVst {
 		if (data.numInputs == 0 && data.numOutputs == 1 && data.outputs[0].numChannels == 2)
 		{
 			Sample32** out = data.outputs[0].channelBuffers32;
-
 			const int32 sampleFrames = data.numSamples;
 			for (int ii = 0; ii < sampleFrames; ii++)
 			{
-				double value = 0.0;
-				for (auto& note : _notes)
-				{
-					if (note.adsr() == BLITSaw_oscillator_note::Off)continue;
-
-					// add
-					value += note.saw * note.velocity();
-
-					// update oscillater
-					blit.updateOscillater(note);
-				}
-
-				// set output buffer
-				out[0][ii] = out[1][ii] = static_cast<Sample32>(value);
+				out[0][ii] = out[1][ii] = blit.render();
+				blit.next();
 			}
 		}
 		return kResultOk;

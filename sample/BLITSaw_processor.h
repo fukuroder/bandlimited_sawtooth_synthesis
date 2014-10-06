@@ -34,9 +34,6 @@ namespace MyVst {
 		};
 
 		//
-		std::array<BLITSaw_oscillator_note, 8> _notes;
-
-		//
 		BLITSaw_oscillator blit;
 	};
 } // namespace

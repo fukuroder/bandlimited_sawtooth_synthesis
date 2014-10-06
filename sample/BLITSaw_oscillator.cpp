@@ -6,55 +6,68 @@ namespace MyVst {
 
 	// constructor
 	BLITSaw_oscillator_note::BLITSaw_oscillator_note()
-		:_adsr(Off)
+		:envelope(Off)
 		, t(0.0)
-		, saw(0.0)
+		, value(0.0)
 		, n(0)
 		, dt(0.0)
 	{
 	}
 
 	//
-	void BLITSaw_oscillator_note::release()
+	void BLITSaw_oscillator::trigger(const NoteOnEvent& noteOn, double srate)
 	{
-		_adsr = Off;
-	}
-
-	//
-	void BLITSaw_oscillator_note::trigger(const NoteOnEvent& noteOn, double srate)
-	{
-		_noteOn = noteOn; // copy
-		_adsr = On;
-		saw = 0.0;
-		t = 0.5;
-
 		//
-		double freq = 440.0*(::pow(2.0, (_noteOn.pitch - _note_no_center) / 12.0));
-		n = static_cast<int>(srate / 2.0 / freq);
-		dt = freq / srate;
+		auto available_note = std::find_if(
+			_notes.begin(),
+			_notes.end(),
+			[](const BLITSaw_oscillator_note& n){return n.envelope == BLITSaw_oscillator_note::Off; });
+
+		if (available_note != _notes.end()){
+			available_note->note_id = noteOn.noteId;
+			available_note->velocity = noteOn.velocity;
+			available_note->envelope = BLITSaw_oscillator_note::On;
+
+			//
+			double freq = 440.0*(::pow(2.0, (noteOn.pitch - _note_no_center) / 12.0));
+			available_note->n = static_cast<int>(srate / 2.0 / freq);
+			available_note->dt = freq / srate;
+			available_note->value = 0.0;
+			available_note->t = 0.5;
+		}
 	}
 
 	//
-	int32 BLITSaw_oscillator_note::id()const
+	void BLITSaw_oscillator::release(const NoteOffEvent& noteOff)
 	{
-		return _noteOn.noteId;
+		const int32 note_id = noteOff.noteId;
+		auto target_note = std::find_if(
+			_notes.begin(),
+			_notes.end(),
+			[note_id](const BLITSaw_oscillator_note& n){return n.note_id == note_id; });
+
+		if (target_note != _notes.end()){
+			//
+			target_note->envelope = BLITSaw_oscillator_note::Off;
+		}
 	}
 
-	//
-	double BLITSaw_oscillator_note::velocity()const
+	bool BLITSaw_oscillator::is_silent()
 	{
-		return _noteOn.velocity;
+		return std::all_of(
+			_notes.begin(),
+			_notes.end(),
+			[](const BLITSaw_oscillator_note& n){return n.envelope == BLITSaw_oscillator_note::Off; });
 	}
 
 	// constructor
 	BLITSaw_oscillator::BLITSaw_oscillator()
 	{
 		// sine wave table
-		for (size_t ii = 0; ii < _sinTable.size() - 1; ii++)
+		for (size_t ii = 0; ii < _sinTable.size(); ii++)
 		{
 			_sinTable[ii] = sin(2.0*M_PI * ii / (_sinTable.size() - 1));
 		}
-		_sinTable.back() = 0.0;
 
 		_Leak = 0.995;
 	}
@@ -82,27 +95,48 @@ namespace MyVst {
 	}
 
 	//
-	double BLITSaw_oscillator::BLIT(double t, int N)
+	double BLITSaw_oscillator::BLIT(double t, int n)
 	{
 		//
-		double x_denominator = LinearInterpolatedSin(0.5*t);
+		double den = LinearInterpolatedSin(0.5*t);
 
-		if (x_denominator < 1.0e-12)
+		if (den < 1.0e-12)
 		{
-			return 2.0*(2 * N + 1);
+			return 2.0*(2 * n + 1);
 		}
 
-		double x_numerator = LinearInterpolatedSin(::fmod((N + 0.5)*t, 1.0));
+		double num = LinearInterpolatedSin(::fmod((n + 0.5)*t, 1.0));
 
-		return 2.0*x_numerator / x_denominator;
+		return 2.0*num / den;
 	}
 
 	//
-	void BLITSaw_oscillator::updateOscillater(BLITSaw_oscillator_note& note)
+	double BLITSaw_oscillator::render()
 	{
-		note.t += note.dt;
-		if (1.0 <= note.t)note.t -= 1.0;
-
-		note.saw = note.saw*_Leak + (BLIT(note.t, note.n) - 2.0)*note.dt;
+		double value = 0.0;
+		for (auto &note : _notes)
+		{
+			if (note.envelope == BLITSaw_oscillator_note::On){
+				// add
+				value += note.value * note.velocity;
+			}
+		}
+		return value;
 	}
+
+	//
+	void BLITSaw_oscillator::next()
+	{
+		for (auto& note : _notes)
+		{
+			if (note.envelope == BLITSaw_oscillator_note::On){
+				// add
+				note.t += note.dt;
+				if (1.0 <= note.t)note.t -= 1.0;
+
+				note.value = note.value*_Leak + (BLIT(note.t, note.n) - 2.0)*note.dt;
+			}
+		}
+	}
+
 } // namespace
