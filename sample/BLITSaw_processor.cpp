@@ -1,3 +1,10 @@
+/*
+ * BLITSaw_processor.cpp
+ *
+ * Copyright (c) 2014, fukuroda (https://github.com/fukuroder)
+ * Released under the MIT license
+ */
+
 #include "BLITSaw_processor.h"
 #include "BLITSaw_guids.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"

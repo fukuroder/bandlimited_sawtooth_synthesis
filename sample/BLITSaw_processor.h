@@ -1,3 +1,10 @@
+/*
+ * BLITSaw_processor.h
+ *
+ * Copyright (c) 2014, fukuroda (https://github.com/fukuroder)
+ * Released under the MIT license
+ */
+
 #pragma once
 #include "public.sdk/source/vst/vstaudioeffect.h"
 #include "BLITSaw_oscillator.h"

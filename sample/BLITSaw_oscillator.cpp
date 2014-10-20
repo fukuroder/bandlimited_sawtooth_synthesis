@@ -1,3 +1,10 @@
+/*
+ * BLITSaw_oscillator.cpp
+ *
+ * Copyright (c) 2014, fukuroda (https://github.com/fukuroder)
+ * Released under the MIT license
+ */
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "BLITSaw_oscillator.h"
