@@ -16,6 +16,7 @@ namespace MyVst {
 	BLITSaw_oscillator_note::BLITSaw_oscillator_note()
 		:envelope(Off)
 		, t(0.0)
+		, sampleOffset(0)
 		, value(0.0)
 		, n(0)
 		, dt(0.0)
@@ -23,7 +24,7 @@ namespace MyVst {
 	}
 
 	//
-	void BLITSaw_oscillator::trigger(const NoteOnEvent& noteOn, double srate)
+	void BLITSaw_oscillator::trigger(const NoteOnEvent& noteOn, int32 sampleOffset, double srate)
 	{
 		//
 		auto available_note = std::find_if(
@@ -42,6 +43,7 @@ namespace MyVst {
 			available_note->dt = freq / srate;
 			available_note->value = 0.0;
 			available_note->t = 0.5;
+			available_note->sampleOffset = sampleOffset;
 		}
 	}
 
@@ -138,11 +140,19 @@ namespace MyVst {
 		for (auto& note : _notes)
 		{
 			if (note.envelope == BLITSaw_oscillator_note::On){
+
+				if (note.sampleOffset > 0) {
+					note.sampleOffset--;
+					return;
+				}
+
 				// add
 				note.t += note.dt;
-				if (1.0 <= note.t)note.t -= 1.0;
+				if (1.0 <= note.t) {
+					note.t -= 1.0;
+				}
 
-				note.value = note.value*_Leak + (BLIT(note.t, note.n) - 2.0)*note.dt;
+				note.value = note.value * _Leak + (BLIT(note.t, note.n) - 2.0) * note.dt;
 			}
 		}
 	}

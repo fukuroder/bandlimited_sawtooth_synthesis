@@ -99,7 +99,7 @@ namespace MyVst {
 
 				if (e.type == Event::kNoteOnEvent)
 				{
-					blit.trigger(e.noteOn, processSetup.sampleRate);
+					blit.trigger(e.noteOn, e.sampleOffset, processSetup.sampleRate);
 				}
 				else if (e.type == Event::kNoteOffEvent)
 				{

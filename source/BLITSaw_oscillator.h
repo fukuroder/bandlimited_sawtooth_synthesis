@@ -35,6 +35,9 @@ namespace MyVst {
 		double t;
 
 		//
+		int32 sampleOffset;
+
+		//
 		double value;
 
 		//
@@ -66,7 +69,7 @@ namespace MyVst {
 		void setLeak(double value);
 
 		//
-		void trigger(const NoteOnEvent& noteOn, double srate);
+		void trigger(const NoteOnEvent& noteOn, int32 sampleOffset, double srate);
 
 		//
 		void release(const NoteOffEvent& noteOff);
