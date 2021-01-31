@@ -1,13 +1,13 @@
 
 set(bandlimited_sawtooth_synthesis_sources
-    sample/BLITSaw_processor.h
-    sample/BLITSaw_controller.cpp
-    sample/BLITSaw_controller.h
-    sample/BLITSaw_entry.cpp
-    sample/BLITSaw_guids.h
-    sample/BLITSaw_oscillator.cpp
-    sample/BLITSaw_oscillator.h
-    sample/BLITSaw_processor.cpp
+    source/BLITSaw_processor.h
+    source/BLITSaw_controller.cpp
+    source/BLITSaw_controller.h
+    source/BLITSaw_entry.cpp
+    source/BLITSaw_guids.h
+    source/BLITSaw_oscillator.cpp
+    source/BLITSaw_oscillator.h
+    source/BLITSaw_processor.cpp
 )
 
 set(target bandlimited_sawtooth_synthesis)
